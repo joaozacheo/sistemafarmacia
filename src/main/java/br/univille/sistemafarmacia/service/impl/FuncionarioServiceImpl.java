@@ -19,5 +19,24 @@ public class FuncionarioServiceImpl implements FuncionarioService{
     public List<Funcionario> getAll() {
         return repositorio.findAll();
     }
+
+    @Override
+    public Funcionario save(Funcionario funcionario) {
+        return repositorio.save(funcionario);
+    }
+
+    @Override
+    public Funcionario findById(long id) {
+        var resultado = repositorio.findById(id);
+        if(resultado.isPresent()){
+            return resultado.get();
+        }
+        return new Funcionario();
+    }
+
+    @Override
+    public void delete(long id) {
+        repositorio.deleteById(id);        
+    }
     
 }
