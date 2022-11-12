@@ -6,4 +6,7 @@ import br.univille.sistemafarmacia.entity.Produto;
 
 public interface ProdutoService {
     List<Produto> getAll();
+    Produto save(Produto produto);
+    Produto findById(long id);
+    void excluir(long id);
 }
