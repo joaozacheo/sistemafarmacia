@@ -2,8 +2,9 @@ package br.univille.sistemafarmacia.service;
 
 import java.util.List;
 
-import br.univille.sistemafarmacia.entity.Funcionario;
+import br.univille.sistemafarmacia.entity.Fornecedor;
 
 public interface FornecedorService {
-    List<Funcionario> getAll();
+    List<Fornecedor> getAll();
+    Fornecedor save(Fornecedor fornecedor);
 }

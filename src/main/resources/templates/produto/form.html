@@ -24,6 +24,12 @@
                     <label for="txt-valorUnitario" class="form-label">Valor Unitário:</label>
                     <input type="text" th:field="*{valorUnitario}" class="form-control" id="txt-valorUnitario">
                 </div>
+                <div class="mb-3">
+                    <label for="txt-fornecedor">Fornecedor:</label>
+                    <select name="fornecedor" id="txt-fornecedor" class="form-select" th:field="*{fornecedor}">
+                        <option th:each="fornecedor : ${listaFornecedores}" th:text="${fornecedor.nome}" th:value="${fornecedor.id}"></option>
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
         </main>

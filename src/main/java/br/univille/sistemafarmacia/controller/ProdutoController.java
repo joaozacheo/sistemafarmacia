@@ -1,5 +1,7 @@
 package br.univille.sistemafarmacia.controller;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.sistemafarmacia.entity.Produto;
+import br.univille.sistemafarmacia.service.FornecedorService;
 import br.univille.sistemafarmacia.service.ProdutoService;
 
 @Controller
@@ -17,6 +20,8 @@ public class ProdutoController {
     
     @Autowired
     private ProdutoService service;
+    @Autowired
+    private FornecedorService serviceFornecedor;
 
     @GetMapping
     public ModelAndView index(){
@@ -27,7 +32,11 @@ public class ProdutoController {
     @GetMapping("/novo")
     public ModelAndView novo(){
         var produto = new Produto();
-        return new ModelAndView("produto/form", "produto", produto);
+        var listaFornecedores = serviceFornecedor.getAll();
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("produto", produto);
+        dados.put("listaFornecedores", listaFornecedores);
+        return new ModelAndView("produto/form", dados);
     }
 
     @PostMapping(params = "form")
@@ -39,7 +48,11 @@ public class ProdutoController {
     @GetMapping("/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") long id){
         var produto = service.findById(id);
-        return new ModelAndView("produto/form", "produto", produto);
+        var listaFornecedores = serviceFornecedor.getAll();
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("produto", produto);
+        dados.put("listaFornecedores", listaFornecedores);
+        return new ModelAndView("produto/form", dados);
     }
 
     @GetMapping("/excluir/{id}")

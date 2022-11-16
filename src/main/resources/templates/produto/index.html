@@ -16,6 +16,7 @@
                         <th>Descrição</th>
                         <th>Quantidade</th>
                         <th>Valor Unitário</th>
+                        <th>Fornecedor</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -26,6 +27,7 @@
                         <td th:text="${produto.descricao}"></td>
                         <td th:text="${produto.qtdEstoque}"></td>
                         <td th:text="${produto.valorUnitario}"></td>
+                        <td th:text="${produto.fornecedor?.nome}"></td>
                         <td>
                             <a th:href="@{'/produtos/alterar/'+ ${produto.id}}" class="btn btn-warning">Alterar</a>
                             <button class="btn btn-danger js-delete" th:data-id="${produto.id}">Excluir</button>
