@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head th:include="layout :: head"></head>
+
+    <body>
+        <nav th:replace="layout :: menu"></nav>
+        <main class="container">
+            <a href="/fornecedores/novo" class="btn btn-primary mb-3">Novo</a>
+            <table class="table" id="tabfornecedor">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Produtos</th>
+                        <th>Endereço</th>
+                        <th>Contato</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="fornecedor : ${listaFornecedores}">
+                        <td th:text="${fornecedor.id}"></td>
+                        <td th:text="${fornecedor.nome}"></td>
+                        <td th:text="${fornecedor.listaProdutos}"></td>
+                        <td th:text="${fornecedor.endereco}"></td>
+                        <td th:text="${fornecedor.contato}"></td>
+                    </tr>
+                </tbody>
+            </table>    
+        </main>
+        <footer th:include="layout :: footer"></footer>
+    </body>
+</html>
