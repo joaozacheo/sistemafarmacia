@@ -2,6 +2,7 @@ package br.univille.sistemafarmacia.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.univille.sistemafarmacia.entity.Fornecedor;
@@ -11,6 +12,7 @@ import br.univille.sistemafarmacia.service.FornecedorService;
 @Service
 public class FornecedorServiceImpl implements FornecedorService{
 
+    @Autowired
     private FornecedorRepository repositorio;
 
     @Override
