@@ -24,5 +24,19 @@ public class FornecedorServiceImpl implements FornecedorService{
     public Fornecedor save(Fornecedor fornecedor) {
         return repositorio.save(fornecedor);
     }
+
+    @Override
+    public Fornecedor getById(long id) {
+        var resultado = repositorio.findById(id);
+        if(resultado.isPresent()){
+            return resultado.get();
+        }
+        return new Fornecedor();
+    }
+
+    @Override
+    public void excluir(long id) {
+        repositorio.deleteById(id);        
+    }
     
 }

@@ -7,4 +7,6 @@ import br.univille.sistemafarmacia.entity.Fornecedor;
 public interface FornecedorService {
     List<Fornecedor> getAll();
     Fornecedor save(Fornecedor fornecedor);
+    Fornecedor getById(long id);
+    void excluir(long id);
 }
