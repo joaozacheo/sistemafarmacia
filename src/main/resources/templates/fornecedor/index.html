@@ -12,7 +12,6 @@
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>Produtos</th>
                         <th>Endereço</th>
                         <th>Contato</th>
                         <th></th>
@@ -22,7 +21,6 @@
                     <tr th:each="fornecedor : ${listaFornecedores}">
                         <td th:text="${fornecedor.id}"></td>
                         <td th:text="${fornecedor.nome}"></td>
-                        <td th:text="${fornecedor.listaProdutos}"></td>
                         <td th:text="${fornecedor.endereco}"></td>
                         <td th:text="${fornecedor.contato}"></td>
                         <td>

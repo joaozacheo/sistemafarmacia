@@ -20,56 +20,6 @@
                     <label for="txt-contato" class="form-label">Contato:</label>
                     <input type="email" id="txt-contato" class="form-control" th:field="*{contato}">
                 </div>
-                <!--<div class="card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            Produtos Fornecidos
-                        </h5>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Produto</th>
-                                    <th>Quantidade</th>
-                                    <th>Valor</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="produto, stat : *{listaProdutos}">
-                                    <td th:text="${produto?.nome}"></td>
-                                    <input type="hidden" th:field="*{listaProdutos[__${stat.index}__].nome}">
-                                    <td th:text="${produto.qtdEstoque}"></td>
-                                    <input type="hidden" th:field="*{listaProdutos[__${stat.index}__].qtdEstoque}">
-                                    <td th:text="${produto.valorUnitario}"></td>
-                                    <input type="hidden" th:field="*{listaProdutos[__${stat.index}__].valorUnitario}">
-                                    <td>
-                                        <button type="butmit" name="removeitem" th:value="__${stat.index}__" class="btn btn-danger">Remover</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"> Novo Item de Venda</h5>
-                        <div class="form-group">
-                            <label for="cbproduto">Produto</label>
-                            <select class="form-select" id="cbproduto" th:field="${novoProduto.nome}">
-                                <option th:each="umProduto : ${listaProdutos}" th:value="${umProduto.id}" th:text="${umProduto.nome}"></option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="txtQuantidade">Quantidade:</label>
-                            <input type="number" id="txtQuantidade" class="form-control" th:field="${novoProduto.qtdEstoque}">
-                        </div>
-                        <div class="form-group">
-                            <label for="txtValorVenda">Valor da Venda:</label>
-                            <input type="number" id="txtValorVenda" class="form-control" th:field="${novoProduto.valorUnitario}">
-                        </div>
-                        <button name="incitem" type="submit" class="btn btn-primary">Adicionar Item</button>
-                    </div>
-                </div>-->
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>    
         </main>

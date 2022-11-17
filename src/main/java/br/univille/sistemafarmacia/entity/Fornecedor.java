@@ -18,7 +18,6 @@ public class Fornecedor {
     private String nome;
     private String endereco;
     private String contato;
-    private ArrayList<Produto> listaProdutos;
 
     public long getId() {
         return id;
@@ -46,12 +45,5 @@ public class Fornecedor {
     }
     public void setContato(String contato) {
         this.contato = contato;
-    }
-
-    public ArrayList<Produto> getListaProdutos() {
-        return listaProdutos;
-    }
-    public void setListaProdutos(ArrayList<Produto> listaProdutos) {
-        this.listaProdutos = listaProdutos;
     }
 }
