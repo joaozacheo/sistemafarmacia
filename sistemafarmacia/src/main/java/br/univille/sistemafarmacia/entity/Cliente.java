@@ -15,6 +15,7 @@ public class Cliente {
     private long id;
     @Column(length = 1500, nullable = false)
     private String endereco;
+    @Column(length = 14, nullable = false)
     private String cpf;
     private String sexo;
     private String contato;
