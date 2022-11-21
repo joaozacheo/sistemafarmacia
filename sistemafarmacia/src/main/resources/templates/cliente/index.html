@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    
-    <head th:include="layout :: head">
-        <title>Cliente</title>
-    </head>
-    
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head th:include="layout :: head"></head>
+
     <body>
         <nav th:replace="layout :: menu"></nav>
-
         <main class="container">
             
-            <a href="/clientes/novoCliente" class="btn btn-primary">Novo Cliente</a>
+            <a href="/clientes/novo" class="btn btn-primary">Novo</a>
             <table class="table" id="tabclientes">
                 <thead>
                     <tr>
@@ -19,56 +16,45 @@
                         <th>Nome</th>
                         <th>Endereço</th>
                         <th>Sexo</th>
-                        <th>Data Nascimento</th>
+                        <th>CPF</th>
                         <th>Cidade</th>
+                        <th>Contato</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="umCliente : ${listaClientes}">
-                        <td th:text="${umCliente.nome}"></td>
                         <td th:text="${umCliente.id}"></td>
+                        <td th:text="${umCliente.nome}"></td>
                         <td th:text="${umCliente.endereco}"></td>
-                        <td th:text="${umCliente.cpf}"></td>
-                        <td th:unless="${cpf.format(umCliente.cpf, '???.???.???-??')}"></td>
                         <td th:text="${umCliente.sexo}"></td>
-                        <td th:if="${umCliente.dataNascimento}"
-                            th:text="${#dates.format(umCliente.dataNascimento, 'dd/MM/yyyy')}"></td>
-                        <td th:unless="${umCliente.dataNascimento}">Não informado</td>
-                        
+                        <td th:text="${umCliente.cpf}"></td>
                         <td th:text="${umCliente.cidadeResidencia?.nome}"></td>
-                        
+                        <td th:text="${umCliente.contato}"></td>
+
                         <td>
-                            <a th:href="@{'/clientes/alterar/' + ${umCliente.id}}" 
-                            class="btn btn-yellow">Alterar</a>
-                            <button class="btn btn-red js-delete" 
-                            th:data-id="${umCliente.id}">Excluir</button>
+                            <a th:href="@{'/clientes/alterar/' + ${umCliente.id}}" class="btn btn-warning">Alterar</a>
+                            <button class="btn btn-danger js-delete" th:data-id="${umCliente.id}">Excluir</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+
         </main>
 
-        <div class="modal" tabindex="-1" 
-            id="modalcliente">
+        <div class="modal" tabindex="-1" id="modalcliente">
             <div class="modal-dialog">
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Excluir Cliente</h5>
-                    <button type="button" class="btn-close" 
-                    data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Excluir Cliente?</p>
+                    <p>Confirma a exclusão do cliente?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" 
-                    class="btn btn-secondary" 
-                    id="btnnao" 
-                    data-bs-dismiss="modal">Não</button>
-                    <button type="button" 
-                    class="btn btn-primary" 
-                    id="btnsim">Sim</button>
+                    <button type="button" class="btn btn-secondary" id="btnnao" data-bs-dismiss="modal">Não</button>
+                    <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
                 </div>
                 </div>
             </div>

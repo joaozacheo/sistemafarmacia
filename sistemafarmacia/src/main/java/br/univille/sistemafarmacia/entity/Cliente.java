@@ -1,10 +1,12 @@
 package br.univille.sistemafarmacia.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Cliente {
@@ -19,7 +21,16 @@ public class Cliente {
     private String cpf;
     private String sexo;
     private String contato;
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    private Cidade cidadeResidencia;
 
+    
+    public Cidade getCidadeResidencia() {
+        return cidadeResidencia;
+    }
+    public void setCidadeResidencia(Cidade cidadeResidencia) {
+        this.cidadeResidencia = cidadeResidencia;
+    }
     public String getNome() {
         return nome;
     }
