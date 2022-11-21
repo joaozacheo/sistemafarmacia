@@ -8,16 +8,18 @@
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
             <a href="/cidades/novo" 
-                class="btn btn-primary">Novo</a>
+                class="btn btn-primary">Nova Cidade</a>
             <table class="table">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Nome</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="umaCidade : ${listaCidades}">
+                        <td th:text="${umaCidade.id}"></td>
                         <td th:text="${umaCidade.nome}"></td>
                         <td>
                             <a th:href="@{'/cidades/alterar/' + ${umaCidade.id}}"
