@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head th:include="layout :: head"></head>
+
+    <body>
+        <nav th:replace="layout :: menu"></nav>
+        <main class="container">
+            <form th:action="@{/funcionarios/(form)}" method="POST" th:object="${funcionario}">
+                <input type="hidden" th:field="*{id}">
+                <div class="mb-3">
+                    <label for="txt-nome" class="form-label">Nome:</label>
+                    <input type="text" th:field="*{nome}" class="form-control" id="txt-nome">
+                </div>
+                <div class="mb-3">
+                    <label for="txt-cpf" class="form-label">CPF:</label>
+                    <input type="text" th:field="*{cpf}" class="form-control" id="txt-cpf">
+                </div>
+                <div class="mb-3">
+                    <label for="txt-sexo" class="form-label">Sexo:</label>
+                    <input type="text" th:field="*{sexo}" class="form-control" id="txt-sexo">
+                </div>
+                <div class="mb-3">
+                    <label for="txt-endereco" class="form-label">Endereco:</label>
+                    <input type="text" th:field="*{endereco}" class="form-control" id="txt-endereco">
+                </div>
+                <div class="mb-3">
+                    <label for="txt-contato" class="form-label">Contato:</label>
+                    <input type="email" th:field="*{contato}" class="form-control" id="txt-contato">
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </main>
+        <footer th:include="layout :: footer"></footer>
+    </body>
+</html>
