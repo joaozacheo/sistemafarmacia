@@ -6,14 +6,13 @@
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
-            <a href="/vendas/novo" class="btn btn-primary">Nova Venda</a>
+            <a href="/vendas/nova" class="btn btn-primary">Nova Venda</a>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Produtos</th>
                         <th>Comprador</th>
                         <th>Vendedor</th>
-                        <th>Produtos</th>
                         <th>Data</th>
                         <th>Forma de Pagamento</th>
                         <th>Total</th>
@@ -22,10 +21,9 @@
                 </thead>
                 <tbody>
                     <tr th:each="venda : ${listaVendas}">
-                        <td th:text="${venda.id}"></td>
-                        <td th:text="${venda.comprador?.nome}"></td>
-                        <td th:text="${venda.vendedor?.nome}"></td>-->
                         <!--<td th:text="${venda.itens}"></td>-->
+                        <td th:text="${venda.comprador?.nome}"></td>
+                        <td th:text="${venda.vendedor?.nome}"></td>
                         <td th:text="${#dates.format(venda.data, 'dd/MM/yyyy')}"></td>
                         <!--<td th:text="${venda.formaPagamento}"></td>-->
                         <td th:text="${venda.valorFinal}"></td>
