@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head th:include="layout :: head"></head>
+
+    <body>
+        <nav th:replace="layout :: menu"></nav>
+        <main class="container">
+            <a href="/funcionarios/novo" class="btn btn-primary mb-3">Novo Funcionário</a>
+            <table class="table" id="tabfuncionario">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Sexo</th>
+                        <th>Endereço</th>
+                        <th>Contato</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="funcionario : ${listaFuncionarios}">
+                        <td th:text="${funcionario.id}"></td>
+                        <td th:text="${funcionario.nome}"></td>
+                        <td th:text="${funcionario.cpf}"></td>
+                        <td th:text="${funcionario.sexo}"></td>
+                        <td th:text="${funcionario.endereco}"></td>
+                        <td th:text="${funcionario.contato}"></td>
+                        <td>
+                            <a th:href="@{'/funcionarios/alterar/'+ ${funcionario.id}}" class="btn btn-warning">Alterar</a>
+                            <button class="btn btn-danger js-delete" th:data-id="${funcionario.id}">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>  
+        </main>
+        <div class="modal" tabindex="-1" id="modalfuncionario">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Excluir Funcionário?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>Confirma a exclusão do funcionário?</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btncancelar" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer th:include="layout :: footer"></footer>
+        <script th:src="@{/scriptFuncionario.js}"></script>
+    </body>
+</html>

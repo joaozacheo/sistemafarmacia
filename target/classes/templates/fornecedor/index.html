@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head th:include="layout :: head"></head>
+
+    <body>
+        <nav th:replace="layout :: menu"></nav>
+        <main class="container">
+            <a href="/fornecedores/novo" class="btn btn-primary mb-3">Novo Fornecedor</a>
+            <table class="table" id="tabfornecedor">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Endereço</th>
+                        <th>Contato</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="fornecedor : ${listaFornecedores}">
+                        <td th:text="${fornecedor.id}"></td>
+                        <td th:text="${fornecedor.nome}"></td>
+                        <td th:text="${fornecedor.endereco}"></td>
+                        <td th:text="${fornecedor.contato}"></td>
+                        <td>
+                            <a th:href="@{'/fornecedores/alterar/'+ ${fornecedor.id}}" class="btn btn-warning">Alterar</a>
+                            <button class="btn btn-danger js-delete" th:data-id="${fornecedor.id}">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>    
+        </main>
+        <div class="modal" tabindex="-1" id="modalfornecedor">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Excluir Fornecedor?</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Confirma a exclusão do fornecedor?</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" id="btncancelar" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        <footer th:include="layout :: footer"></footer>
+        <script th:src="@{/scriptFornecedor.js}"></script>
+    </body>
+</html>
