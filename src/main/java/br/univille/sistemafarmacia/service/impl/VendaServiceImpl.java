@@ -19,5 +19,10 @@ public class VendaServiceImpl implements VendaService{
     public List<Venda> getAll() {
         return repositorio.findAll();
     }
+
+    @Override
+    public Venda save(Venda venda) {
+        return repositorio.save(venda);
+    }
     
 }

@@ -1,13 +1,16 @@
 package br.univille.sistemafarmacia.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -23,7 +26,9 @@ public class Venda {
     private Date data;
     private float subtotal;
     private float valorFinal;
-    //private List<ItensDeVenda> itens;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "venda_id")
+    private List<ItemDeVenda> itens;
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     private Cliente comprador;
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
@@ -72,5 +77,12 @@ public class Venda {
     }
     public void setVendedor(Funcionario vendedor) {
         this.vendedor = vendedor;
+    }
+
+    public List<ItemDeVenda> getItens() {
+        return itens;
+    }
+    public void setItens(List<ItemDeVenda> itens) {
+        this.itens = itens;
     }
 }

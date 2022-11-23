@@ -6,4 +6,5 @@ import br.univille.sistemafarmacia.entity.Venda;
 
 public interface VendaService {
     List<Venda> getAll();
+    Venda save(Venda venda);
 }
