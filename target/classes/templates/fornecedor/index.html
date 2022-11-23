@@ -13,6 +13,7 @@
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Endereço</th>
+                        <th>Cidade</th>
                         <th>Contato</th>
                         <th></th>
                     </tr>
@@ -22,6 +23,7 @@
                         <td th:text="${fornecedor.id}"></td>
                         <td th:text="${fornecedor.nome}"></td>
                         <td th:text="${fornecedor.endereco}"></td>
+                        <td th:text="${fornecedor.cidadeResidencia?.getNome()}"></td>
                         <td th:text="${fornecedor.contato}"></td>
                         <td>
                             <a th:href="@{'/fornecedores/alterar/'+ ${fornecedor.id}}" class="btn btn-warning">Alterar</a>

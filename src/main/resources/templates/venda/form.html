@@ -6,8 +6,8 @@
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
-            <form action="@{/vendas/(form)}" method="POST" th:object="${venda}">
-                <input type="hidden" id="txt-id" th:field="*{id}">
+            <form th:action="@{/vendas/(form)}" method="POST" th:object="${venda}">
+                <input type="hidden" th:field="*{id}">
                 <div class="row">
                     <div class="mb-3 col"> <!--Mudar para pesquisa com CPF-->
                         <label for="txt-comprador">Comprador:</label>
@@ -43,11 +43,11 @@
                         </h5>
 
                         <!--criar js-->
-                        <button name="novo" type="submit" class="btn btn-primary mb-3 botao-novoItem">Novo Item</button>
+                        <button name="addItem" type="submit" class="btn btn-primary mb-3 botao-novoItem">Novo Item</button>
                         
                         <div class="card mb-3">
                             <div class="card-body js-novoItem">
-                                <h5 class="card-title"> Novo Item de Venda</h5>
+                                <h6 class="card-title"> Novo Item de Venda</h6>
                                 <div class="mb-3">
                                     <label for="cbproduto">Produto</label>
                                     <select class="form-select" id="cbproduto" th:field="${novoItem.produto}">
@@ -87,7 +87,7 @@
                         </table>
                     </div>
                 </div>
-                <button name="incitem" type="submit" class="btn btn-primary">Salvar</button>
+                <button name="save" type="submit" class="btn btn-primary">Salvar</button>
             </form>
         </main>
         <footer th:include="layout :: footer"></footer>
