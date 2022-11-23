@@ -1,5 +1,6 @@
 package br.univille.sistemafarmacia.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,7 @@ import br.univille.sistemafarmacia.entity.FormaPagamento;
 import br.univille.sistemafarmacia.service.FormaPagamentoService;
 
 @Controller
-@RequestMapping("/formapagamento")
+@RequestMapping("/formaPagamento")
 public class FormaPagamentoController {
 
     @Autowired
@@ -39,7 +40,6 @@ public class FormaPagamentoController {
     }
     @GetMapping("/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") long id){
-        
         var umaFormaPagamento = service.findById(id);
         return new ModelAndView("formaPagamento/form", "formaPagamento", umaFormaPagamento);
     }

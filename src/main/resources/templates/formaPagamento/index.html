@@ -13,14 +13,14 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Tipo</th>
+                        <th>Forma de Pagamento</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="umaFormaPagamento : ${listaFormaPagamento}">
                         <td th:text="${umaFormaPagamento.id}"></td>
-                        <td th:text="${umaFormaPagamento.nome}"></td>
+                        <td th:text="${umaFormaPagamento.tipo}"></td>
                         <td>
                             <a th:href="@{'/formaPagamento/alterar/' + ${umaFormaPagamento.id}}"
                                 class="btn btn-warning">Alterar</a>
