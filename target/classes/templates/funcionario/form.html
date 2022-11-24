@@ -25,6 +25,12 @@
                     <input type="text" th:field="*{endereco}" class="form-control" id="txt-endereco">
                 </div>
                 <div class="mb-3">
+                    <label for="txt-cidadeResidencia">Cidade:</label>
+                    <select id="txt-cidadeResidencia" class="form-select" th:field="*{cidadeResidencia}">
+                        <option th:each="umaCidade : ${listaCidades}" th:text="${umaCidade.nome}" th:value="${umaCidade.id}"></option>
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label for="txt-contato" class="form-label">Contato:</label>
                     <input type="email" th:field="*{contato}" class="form-control" id="txt-contato">
                 </div>

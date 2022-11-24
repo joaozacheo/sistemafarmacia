@@ -16,6 +16,7 @@
                         <th>CPF</th>
                         <th>Sexo</th>
                         <th>Endereço</th>
+                        <th>Cidade</th>
                         <th>Contato</th>
                         <th></th>
                     </tr>
@@ -27,6 +28,7 @@
                         <td th:text="${funcionario.cpf}"></td>
                         <td th:text="${funcionario.sexo}"></td>
                         <td th:text="${funcionario.endereco}"></td>
+                        <td th:text="${funcionario.cidadeResidencia?.nome}"></td>
                         <td th:text="${funcionario.contato}"></td>
                         <td>
                             <a th:href="@{'/funcionarios/alterar/'+ ${funcionario.id}}" class="btn btn-warning">Alterar</a>

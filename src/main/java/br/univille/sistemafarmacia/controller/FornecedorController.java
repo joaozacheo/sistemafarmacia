@@ -55,7 +55,6 @@ public class FornecedorController {
         dados.put("listaCidades", listaCidades);
         return new ModelAndView("fornecedor/form", dados);
     }
-
     @GetMapping("/excluir/{id}")
     public ModelAndView excluir(@PathVariable("id") long id){
         service.excluir(id);

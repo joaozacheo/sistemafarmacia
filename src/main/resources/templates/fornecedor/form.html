@@ -18,7 +18,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="txt-cidadeResidencia">Cidade:</label>
-                    <select name="cidadeResidencia" id="txt-cidadeResidencia" class="form-select" th:field="*{cidadeResidencia}">
+                    <select id="txt-cidadeResidencia" class="form-select" th:field="*{cidadeResidencia}">
                         <option th:each="umaCidade : ${listaCidades}" th:text="${umaCidade.nome}" th:value="${umaCidade.id}"></option>
                     </select>
                 </div>

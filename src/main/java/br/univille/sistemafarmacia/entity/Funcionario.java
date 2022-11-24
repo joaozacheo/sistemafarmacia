@@ -1,9 +1,11 @@
 package br.univille.sistemafarmacia.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Funcionario {
@@ -16,6 +18,8 @@ public class Funcionario {
     private String cpf;
     private String sexo;
     private String contato;
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    private Cidade cidadeResidencia;
 
     public long getId() {
         return id;
@@ -57,5 +61,12 @@ public class Funcionario {
     }
     public void setContato(String contato) {
         this.contato = contato;
+    }
+    
+    public Cidade getCidadeResidencia() {
+        return cidadeResidencia;
+    }
+    public void setCidadeResidencia(Cidade cidadeResidencia) {
+        this.cidadeResidencia = cidadeResidencia;
     }
 }

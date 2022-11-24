@@ -46,11 +46,11 @@ public class Fornecedor {
     public void setContato(String contato) {
         this.contato = contato;
     }
-
+    
     public Cidade getCidadeResidencia() {
         return cidadeResidencia;
     }
-    public void setCidade(Cidade cidadeResidencia) {
+    public void setCidadeResidencia(Cidade cidadeResidencia) {
         this.cidadeResidencia = cidadeResidencia;
     }
 }
