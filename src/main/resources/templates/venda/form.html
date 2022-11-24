@@ -46,7 +46,7 @@
                         <button name="addItem" type="submit" class="btn btn-primary mb-3 botao-novoItem">Novo Item</button>
                         
                         <div class="card mb-3">
-                            <div class="card-body js-novoItem">
+                            <div class="card-body">
                                 <h6 class="card-title"> Novo Item de Venda</h6>
                                 <div class="mb-3">
                                     <label for="cbproduto">Produto</label>
@@ -55,8 +55,8 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="txtQuantidade">Quantidade:</label>
-                                    <input type="number" id="txtQuantidade" class="form-control" th:field="${novoItem.qtdVenda}">
+                                    <label for="txt-qtdVenda">Quantidade:</label>
+                                    <input type="number" id="txt-qtdVenda" class="form-control" th:field="${novoItem.qtdVenda}">
                                 </div>
                                 <button name="incitem" type="submit" class="btn btn-primary">Adicionar Item</button>
                             </div>

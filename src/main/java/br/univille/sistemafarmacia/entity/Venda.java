@@ -1,5 +1,6 @@
 package br.univille.sistemafarmacia.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class Venda {
     private float valorFinal;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "venda_id")
-    private List<ItemDeVenda> itens;
+    private List<ItemDeVenda> itens = new ArrayList<>();
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     private Cliente comprador;
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
