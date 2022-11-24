@@ -36,7 +36,14 @@ public class Venda {
     private Funcionario vendedor;
     //private FormaPagamento formaPagamento;
 
-    //Adicionar methodo
+    public float calculoSubtotal(Venda venda){
+        float valor = 0;
+        for(int i = 0; i < venda.itens.size(); i++){
+            valor += venda.itens.get(i).getProduto().getValorUnitario() * venda.itens.get(i).getQtdVenda();
+        }
+
+        return valor;
+    }
 
     public long getId() {
         return id;

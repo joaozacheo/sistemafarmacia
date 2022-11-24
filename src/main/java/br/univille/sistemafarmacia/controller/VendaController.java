@@ -42,6 +42,7 @@ public class VendaController {
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
         var listaProdutos = serviceProdutos.getAll();
+        var subtotal = venda.calculoSubtotal(venda);
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
@@ -49,6 +50,7 @@ public class VendaController {
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
         dados.put("novoItem", new ItemDeVenda());
+        dados.put("subtotal", subtotal);
         return new ModelAndView("venda/form", dados);
     }
 
@@ -64,13 +66,16 @@ public class VendaController {
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
         var listaProdutos = serviceProdutos.getAll();
+        var subtotal = venda.calculoSubtotal(venda);
+
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
         dados.put("listaCompradores", listaClientes);
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
         dados.put("novoItem", new ItemDeVenda());
-        return new ModelAndView("vendas/form", dados);
+        dados.put("subtotal", subtotal);
+        return new ModelAndView("venda/form", dados);
     }
 
     @PostMapping(params = "removeitem")
@@ -79,12 +84,15 @@ public class VendaController {
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
         var listaProdutos = serviceProdutos.getAll();
+        var subtotal = venda.calculoSubtotal(venda);
+
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
         dados.put("listaCompradores", listaClientes);
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
         dados.put("novoItem", new ItemDeVenda());
-        return new ModelAndView("vendas/form", dados);
+        dados.put("subtotal", subtotal);
+        return new ModelAndView("venda/form", dados);
     }
 }

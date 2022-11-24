@@ -20,7 +20,7 @@
                 </thead>
                 <tbody>
                     <tr th:each="venda : ${listaVendas}">
-                        <td th:text="${#aggregates.sum(venda.itens)}"></td>
+                        <td th:text="${#aggregates.sum(venda.itens.![getValorFinal])}"></td>
                         <td th:text="${venda.comprador?.nome}"></td>
                         <td th:text="${venda.vendedor?.nome}"></td>
                         <td th:text="${#dates.format(venda.data, 'dd/MM/yyyy')}"></td>
