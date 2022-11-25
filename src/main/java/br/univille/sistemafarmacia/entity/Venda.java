@@ -36,13 +36,13 @@ public class Venda {
     private Funcionario vendedor;
     //private FormaPagamento formaPagamento;
 
-    public float calculoSubtotal(Venda venda){
-        float valor = 0;
-        for(int i = 0; i < venda.itens.size(); i++){
+    public float calculoSubtotal(){
+        this.subtotal = 0;
+        /*for(int i = 0; i < venda.itens.size(); i++){
             valor += venda.itens.get(i).getProduto().getValorUnitario() * venda.itens.get(i).getQtdVenda();
-        }
+        }*/
 
-        return valor;
+        return this.subtotal;
     }
 
     public long getId() {
@@ -60,6 +60,10 @@ public class Venda {
     }
 
     public float getSubtotal() {
+        subtotal = 0;
+        for(int i = 0; i < itens.size(); i++){
+            subtotal += itens.get(i).getProduto().getValorUnitario() * itens.get(i).getQtdVenda();
+        }
         return subtotal;
     }
     public void setSubtotal(float subtotal) {
@@ -67,6 +71,21 @@ public class Venda {
     }
 
     public float getValorFinal() {
+        if(this.subtotal < 50){
+            valorFinal = subtotal;
+        }else{
+            if(subtotal >= 50 && subtotal < 100){
+                valorFinal = subtotal - (subtotal*0.15f);
+            }else{
+                if(subtotal >= 100 && subtotal < 200){
+                    valorFinal = subtotal - (subtotal*0.25f);
+                }else{
+                    if(subtotal >= 200){
+                        valorFinal = subtotal - (subtotal*0.35f);
+                    }
+                }
+            }
+        }
         return valorFinal;
     }
     public void setValorFinal(float valorFinal) {

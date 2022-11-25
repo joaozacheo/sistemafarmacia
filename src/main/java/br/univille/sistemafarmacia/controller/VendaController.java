@@ -42,7 +42,6 @@ public class VendaController {
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
         var listaProdutos = serviceProdutos.getAll();
-        var subtotal = venda.calculoSubtotal(venda);
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
@@ -50,13 +49,26 @@ public class VendaController {
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
         dados.put("novoItem", new ItemDeVenda());
-        dados.put("subtotal", subtotal);
         return new ModelAndView("venda/form", dados);
     }
 
     @PostMapping(params = "save")
     public ModelAndView save(Venda venda){
         service.save(venda);
+        /*
+        for(int i = 1; i < serviceProdutos.getAll().size(); i++){
+            int qtdProduto = 0;
+            int qtdAtual = 0;
+            var umProduto = serviceProdutos.findById(i);
+            for(int j = 0; j < venda.getItens().size(); j++){
+                if(umProduto.getNome().equals(venda.getItens().get(j).getProduto().getNome())){
+                    qtdProduto++;
+                }
+            }
+            qtdAtual = umProduto.getQtdEstoque()-qtdProduto;
+            umProduto.setQtdEstoque(qtdAtual);
+        }*/
+        
         return new ModelAndView("redirect:/vendas");
     }
 
@@ -66,7 +78,6 @@ public class VendaController {
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
         var listaProdutos = serviceProdutos.getAll();
-        var subtotal = venda.calculoSubtotal(venda);
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
@@ -74,7 +85,6 @@ public class VendaController {
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
         dados.put("novoItem", new ItemDeVenda());
-        dados.put("subtotal", subtotal);
         return new ModelAndView("venda/form", dados);
     }
 
@@ -84,7 +94,6 @@ public class VendaController {
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
         var listaProdutos = serviceProdutos.getAll();
-        var subtotal = venda.calculoSubtotal(venda);
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
@@ -92,7 +101,6 @@ public class VendaController {
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
         dados.put("novoItem", new ItemDeVenda());
-        dados.put("subtotal", subtotal);
         return new ModelAndView("venda/form", dados);
     }
 }
