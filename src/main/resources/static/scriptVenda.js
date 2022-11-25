@@ -5,4 +5,3 @@ btnNovoItem.addEventListener('click', () => {
     btnNovoItem.classList.toggle('d-none');
     formNovoItem.classList.remove('d-none');
 })
-
