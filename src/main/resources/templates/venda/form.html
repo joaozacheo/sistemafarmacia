@@ -42,10 +42,9 @@
                             Itens de Venda Vinculados
                         </h5>
 
-                        <!--criar js-->
-                        <button name="addItem" type="submit" class="btn btn-primary mb-3 botao-novoItem">Novo Item</button>
+                        <button type="reset" class="btn btn-primary mb-3" id="novoItem">Novo Item</button>
                         
-                        <div class="card mb-3">
+                        <div class="card mb-3 d-none" id="form-novoItem">
                             <div class="card-body">
                                 <h6 class="card-title"> Novo Item de Venda</h6>
                                 <div class="mb-3">
@@ -58,7 +57,7 @@
                                     <label for="txt-qtdVenda">Quantidade:</label>
                                     <input type="number" id="txt-qtdVenda" class="form-control" th:field="${novoItem.qtdVenda}">
                                 </div>
-                                <button name="incitem" type="submit" class="btn btn-primary">Adicionar Item</button>
+                                <button name="incitem" type="submit" class="btn btn-primary" id="addItem">Adicionar Item</button>
                             </div>
                         </div>
 
@@ -91,5 +90,6 @@
             </form>
         </main>
         <footer th:include="layout :: footer"></footer>
+        <script th:src="@{/scriptVenda.js}"></script>
     </body>
 </html>
