@@ -17,7 +17,7 @@ public class Fornecedor {
     private String endereco;
     private String contato;
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
-    private Cidade cidadeResidencia;
+    private Cidade cidadeOrigem;
 
     public long getId() {
         return id;
@@ -47,10 +47,10 @@ public class Fornecedor {
         this.contato = contato;
     }
     
-    public Cidade getCidadeResidencia() {
-        return cidadeResidencia;
+    public Cidade getCidadeOrigem() {
+        return cidadeOrigem;
     }
-    public void setCidadeResidencia(Cidade cidadeResidencia) {
-        this.cidadeResidencia = cidadeResidencia;
+    public void setCidadeOrigem(Cidade cidadeOrigem) {
+        this.cidadeOrigem = cidadeOrigem;
     }
 }
