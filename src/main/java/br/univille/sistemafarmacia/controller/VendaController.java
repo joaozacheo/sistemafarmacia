@@ -55,21 +55,6 @@ public class VendaController {
     @PostMapping(params = "save")
     public ModelAndView save(Venda venda){
         service.save(venda);
-        /*
-        for(int i = 1; i < serviceProdutos.getAll().size(); i++){
-            int qtdProduto = 0;
-            var umProduto = serviceProdutos.findById(i);
-            int qtdAtual = 0;
-            for(int j = 0; j < venda.getItens().size(); j++){
-                var umItem = venda.getItens().get(j).getProduto().getNome();
-                if(umProduto.getNome().equals(umItem)){
-                    qtdProduto++;
-                }
-            }
-            qtdAtual = umProduto.getQtdEstoque() - qtdProduto;
-            
-            umProduto.setQtdEstoque(qtdAtual);
-        }*/
         
         return new ModelAndView("redirect:/vendas");
     }
