@@ -11,13 +11,13 @@
                 method="POST" th:object="${cliente}"> 
 
                 <input type="hidden" th:field="*{id}">
-                <div class="form-group">
+                <div class="mb-3">
                     <label for="txtnome">Nome:</label>
                     <input type="text" th:field="*{nome}"
                         class="form-control" id="txtnome">
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                     <label>Cidade:</label>
                     <select class="form-select" th:field="*{cidadeResidencia}">
                         <option th:each="umaCidade : ${listaCidades}"
@@ -26,32 +26,32 @@
                     </select>
                 </div>
                 
-                <div class="form-group">
+                <div class="mb-3">
                     <label for="txtendereco">Endereço:</label>
                     <input type="text" th:field="*{endereco}"
                         class="form-control" id="txtendereco">
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                     <label for="txtcpf">CPF:</label>
                     <input type="text" th:field="*{cpf}"
                         class="form-control" id="txtcpf">
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                     <label for="txtsexo">Sexo:</label>
                     <input type="text" th:field="*{sexo}"
                         class="form-control" id="txtsexo">
                 </div>
 
-                <div class="form-group">
+                <div class="mb-3">
                     <label for="txtcontato">Contato:</label>
                     <input type="text" th:field="*{contato}"
                         class="form-control" id="txtcontato">
                 </div>
                 
 
-                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="submit" class="btn btn-success">Salvar</button>
             </form>
         </main>
         <footer th:include="layout :: footer"></footer>

@@ -7,22 +7,22 @@
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
-            <a href="/cidades/novo" 
-                class="btn btn-success">Nova Cidade</a>
+            <a href="/formaPagamento/novo" 
+                class="btn btn-success">Nova Forma de Pagamento</a>
             <table class="table">
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nome</th>
+                        <th>Forma de Pagamento</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="umaCidade : ${listaCidades}">
-                        <td th:text="${umaCidade.id}"></td>
-                        <td th:text="${umaCidade.nome}"></td>
+                    <tr th:each="umaFormaPagamento : ${listaFormaPagamento}">
+                        <td th:text="${umaFormaPagamento.id}"></td>
+                        <td th:text="${umaFormaPagamento.tipo}"></td>
                         <td>
-                            <a th:href="@{'/cidades/alterar/' + ${umaCidade.id}}"
+                            <a th:href="@{'/formaPagamento/alterar/' + ${umaFormaPagamento.id}}"
                                 class="btn btn-warning">Alterar</a>
                         </td>
                     </tr>

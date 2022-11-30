@@ -7,14 +7,14 @@
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
-            <form th:action="@{/cidades/(form)}" method="POST"
-                th:object="${cidade}">
+            <form th:action="@{/formaPagamento/(form)}" method="POST"
+                th:object="${formaPagamento}">
                 <input type="hidden" th:field="*{id}">
                 
                 <div class="mb-3">
-                    <label for="txtNome">Nome:</label>
+                    <label for="txtTipo">Tipo:</label>
                     <input type="text" class="form-control"
-                        id="txtNome" th:field="*{nome}">
+                        id="txtTipo" th:field="*{tipo}">
                 </div>
                 <button type="submit" 
                     class="btn btn-success">Salvar</button>
