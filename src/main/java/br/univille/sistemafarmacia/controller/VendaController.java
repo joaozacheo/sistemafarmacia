@@ -57,7 +57,6 @@ public class VendaController {
     @PostMapping(params = "save")
     public ModelAndView save(Venda venda){
         service.save(venda);
-        
         return new ModelAndView("redirect:/vendas");
     }
 
