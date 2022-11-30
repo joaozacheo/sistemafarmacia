@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head th:include="layout :: head"></head>
+
+    <body>
+        <nav th:replace="layout :: menu"></nav>
+        <main class="container">
+            <a href="/vendas/nova" class="btn btn-success">Nova Venda</a>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Produtos</th>
+                        <th>Comprador</th>
+                        <th>Vendedor</th>
+                        <th>Data</th>
+                        <th>Forma de Pagamento</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="venda : ${listaVendas}">
+                        <td th:text="${#lists.size(venda.getItens)}"></td>
+                        <td th:text="${venda.comprador?.nome}"></td>
+                        <td th:text="${venda.vendedor?.nome}"></td>
+                        <td th:text="${#dates.format(venda.data, 'dd/MM/yyyy')}"></td>
+                        <td></td>
+                        <!--<td th:text="${venda.formaPagamento}"></td>-->
+                        <td class="d-none" th:text="${venda.subtotal}"></td>
+                        <td th:text="${venda.valorFinal}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+        <footer th:include="layout :: footer"></footer>
+    </body>
+</html>
