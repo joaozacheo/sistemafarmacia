@@ -11,13 +11,13 @@
                 th:object="${cidade}">
                 <input type="hidden" th:field="*{id}">
                 
-                <div class="form-group mb-3">
+                <div class="mb-3">
                     <label for="txtNome">Nome:</label>
                     <input type="text" class="form-control"
                         id="txtNome" th:field="*{nome}">
                 </div>
                 <button type="submit" 
-                    class="btn btn-primary">Salvar</button>
+                    class="btn btn-success">Salvar</button>
             </form>
         </main>
         <footer th:include="layout :: footer"></footer>
