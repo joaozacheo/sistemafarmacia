@@ -38,7 +38,6 @@ public class CidadeController {
     }
     @GetMapping("/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") long id){
-        
         var umaCidade = service.findById(id);
         return new ModelAndView("cidade/form", "cidade", umaCidade);
     }
