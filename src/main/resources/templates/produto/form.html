@@ -30,7 +30,7 @@
                         <option th:each="fornecedor : ${listaFornecedores}" th:text="${fornecedor.nome}" th:value="${fornecedor.id}"></option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="submit" class="btn btn-success">Salvar</button>
             </form>
         </main>
         <footer th:include="layout :: footer"></footer>
