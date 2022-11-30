@@ -66,13 +66,17 @@ public class Venda {
             valorFinal = subtotal;
         }else{
             if(subtotal >= 50 && subtotal < 100){
-                valorFinal = subtotal - (subtotal*0.15f);
+                valorFinal = subtotal - (subtotal*0.5f);
             }else{
-                if(subtotal >= 100 && subtotal < 200){
-                    valorFinal = subtotal - (subtotal*0.25f);
+                if(subtotal >= 100 && subtotal < 150){
+                    valorFinal = subtotal - (subtotal*0.10f);
                 }else{
-                    if(subtotal >= 200){
-                        valorFinal = subtotal - (subtotal*0.35f);
+                    if(subtotal >= 150 && subtotal < 200){
+                        valorFinal = subtotal - (subtotal*0.15f);
+                    }else{
+                        if(subtotal >= 200){
+                            valorFinal = subtotal - (subtotal*0.20f);
+                        }
                     }
                 }
             }
@@ -102,5 +106,29 @@ public class Venda {
     }
     public void setItens(List<ItemDeVenda> itens) {
         this.itens = itens;
+    }
+
+    public String calculaDesconto(){
+        String desconto = "0%";
+        if(subtotal < 50){
+            desconto = "0%";
+        }else{
+            if(subtotal >= 50 && subtotal < 100){
+                desconto = "5%";
+            }else{
+                if(subtotal >= 100 && subtotal < 150){
+                    desconto = "10%";
+                }else{
+                    if(subtotal >= 150 && subtotal < 200){
+                        desconto = "15%";
+                    }else{
+                        if(subtotal >= 200){
+                            desconto = "20%";
+                        }
+                    }
+                }
+            }
+        }
+        return desconto;
     }
 }

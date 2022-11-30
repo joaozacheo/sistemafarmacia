@@ -32,6 +32,10 @@
                         <input type="number" id="txt-subtotal" th:field="*{subtotal}" class="form-control" disabled>
                     </div>
                     <div class="mb-3 col">
+                        <label for="txt-desconto">Desconto:</label>
+                        <input type="text" id="txt-desconto" th:value="*{calculaDesconto()}" class="form-control" disabled>
+                    </div>
+                    <div class="mb-3 col">
                         <label for="txt-valorFinal">Total:</label>
                         <input type="number" id="txt-valorFinal" th:field="*{valorFinal}" class="form-control" disabled>
                     </div>
@@ -42,7 +46,7 @@
                             Itens de Venda Vinculados
                         </h5>
 
-                        <button type="reset" class="btn btn-primary mb-3" id="novoItem">Novo Item</button>
+                        <button type="reset" class="btn btn-success mb-3" id="novoItem">Novo Item</button>
                         
                         <div class="card mb-3 d-none" id="form-novoItem">
                             <div class="card-body">
@@ -57,7 +61,7 @@
                                     <label for="txt-qtdVenda">Quantidade:</label>
                                     <input type="number" id="txt-qtdVenda" class="form-control" th:field="${novoItem.qtdVenda}">
                                 </div>
-                                <button name="incitem" type="submit" class="btn btn-primary" id="addItem">Adicionar Item</button>
+                                <button name="incitem" type="submit" class="btn btn-success" id="addItem">Adicionar Item</button>
                             </div>
                         </div>
 
@@ -86,7 +90,7 @@
                         </table>
                     </div>
                 </div>
-                <button name="save" type="submit" class="btn btn-primary">Salvar</button>
+                <button name="save" type="submit" class="btn btn-success">Salvar</button>
             </form>
         </main>
         <footer th:include="layout :: footer"></footer>

@@ -42,6 +42,7 @@ public class VendaController {
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
         var listaProdutos = serviceProdutos.getAll();
+        //var desconto = venda.calculaDesconto();
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
@@ -49,6 +50,7 @@ public class VendaController {
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
         dados.put("novoItem", new ItemDeVenda());
+        //dados.put("desconto", desconto);
         return new ModelAndView("venda/form", dados);
     }
 
@@ -65,6 +67,7 @@ public class VendaController {
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
         var listaProdutos = serviceProdutos.getAll();
+        //var desconto = venda.calculaDesconto();
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
@@ -72,6 +75,7 @@ public class VendaController {
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
         dados.put("novoItem", new ItemDeVenda());
+        //dados.put("desconto", desconto);
         return new ModelAndView("venda/form", dados);
     }
 
@@ -81,6 +85,7 @@ public class VendaController {
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
         var listaProdutos = serviceProdutos.getAll();
+        //var desconto = venda.calculaDesconto();
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
@@ -88,6 +93,7 @@ public class VendaController {
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
         dados.put("novoItem", new ItemDeVenda());
+        //dados.put("desconto", desconto);
         return new ModelAndView("venda/form", dados);
     }
 }
