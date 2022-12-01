@@ -25,7 +25,7 @@
                         <td th:text="${venda.vendedor?.nome}"></td>
                         <td th:text="${#dates.format(venda.data, 'dd/MM/yyyy')}"></td>
                         <td></td>
-                        <td th:text="${venda.formaPagamento}"></td>
+                        <td th:text="${venda.formasPagamento}"></td>
                         <td class="d-none" th:text="${venda.subtotal}"></td>
                         <td th:text="${venda.valorFinal}"></td>
                     </tr>

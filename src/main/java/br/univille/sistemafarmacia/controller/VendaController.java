@@ -45,14 +45,14 @@ public class VendaController {
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
         var listaProdutos = serviceProdutos.getAll();
-        var listaPagamento = servicePagamento.getAll();
+        var listaPagamentos = servicePagamento.getAll();
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
         dados.put("listaCompradores", listaClientes);
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
-        dados.put("listaPagamento", listaPagamento);
+        dados.put("listaPagamentos", listaPagamentos);
         dados.put("novoItem", new ItemDeVenda());
         return new ModelAndView("venda/form", dados);
     }
@@ -69,14 +69,14 @@ public class VendaController {
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
         var listaProdutos = serviceProdutos.getAll();
-        var listaPagamento = servicePagamento.getAll();
+        var listaPagamentos = servicePagamento.getAll();
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
         dados.put("listaCompradores", listaClientes);
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
-        dados.put("listaPagamento", listaPagamento);
+        dados.put("listaPagamentos", listaPagamentos);
         dados.put("novoItem", new ItemDeVenda());
         return new ModelAndView("venda/form", dados);
     }
@@ -87,14 +87,14 @@ public class VendaController {
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
         var listaProdutos = serviceProdutos.getAll();
-        var listaPagamento = servicePagamento.getAll();
+        var listaPagamentos = servicePagamento.getAll();
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
         dados.put("listaCompradores", listaClientes);
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
-        dados.put("listaPagamento", listaPagamento);
+        dados.put("listaPagamentos", listaPagamentos);
         dados.put("novoItem", new ItemDeVenda());
         return new ModelAndView("venda/form", dados);
     }
