@@ -34,7 +34,8 @@ public class Venda {
     private Cliente comprador;
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     private Funcionario vendedor;
-    //private FormaPagamento formaPagamento;
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    private FormaPagamento formaPagamento;
 
     public long getId() {
         return id;
@@ -106,6 +107,13 @@ public class Venda {
     }
     public void setItens(List<ItemDeVenda> itens) {
         this.itens = itens;
+    }
+    
+    public FormaPagamento getFormaPagamento() {
+        return formaPagamento;
+    }
+    public void setFormaPagamento(FormaPagamento formaPagamento) {
+        this.formaPagamento = formaPagamento;
     }
 
     public String calculaDesconto(){

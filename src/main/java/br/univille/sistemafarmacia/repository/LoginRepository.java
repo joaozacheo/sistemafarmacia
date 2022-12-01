@@ -1,11 +1,11 @@
-// package br.univille.sistemafarmacia.repository;
+package br.univille.sistemafarmacia.repository;
 
-// import org.springframework.data.jpa.repository.JpaRepository;
-// import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-// import br.univille.sistemafarmacia.entity.Login;
+import br.univille.sistemafarmacia.entity.Login;
 
-// @Repository
-// public interface LoginRepository extends JpaRepository<Login,Long>{
-//     Login findByNome(String nome);
-// }
+@Repository
+public interface LoginRepository extends JpaRepository<Login,Long>{
+    Login findByNome(String nome);
+}

@@ -21,11 +21,17 @@
                             <option th:each="vendedor : ${listaVendedores}" th:text="${vendedor.nome}" th:value="${vendedor.id}"></option>
                         </select>
                     </div>
-                </div>
-                <div class="row">
                     <div class="mb-3 col">
                         <label for="txt-data">Data da Venda:</label>
                         <input type="date" id="txt-data" th:field="*{data}" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col">
+                        <label for="txt-formaPagamento">Forma de Pagamento:</label>
+                        <select name="formaPagamento" id="txt-formaPagamento" class="form-select" th:field="*{formaPagamento}">
+                            <option th:each="formaPagamento : ${listaPagamentos}" th:text="${formaPagamento.nome}" th:value="${formaPagamento.id}"></option>
+                        </select>
                     </div>
                     <div class="mb-3 col">
                         <label for="txt-subtotal">Subtotal:</label>

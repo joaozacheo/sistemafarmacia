@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.univille.sistemafarmacia.entity.ItemDeVenda;
 import br.univille.sistemafarmacia.entity.Venda;
 import br.univille.sistemafarmacia.service.ClienteService;
+import br.univille.sistemafarmacia.service.FormaPagamentoService;
 import br.univille.sistemafarmacia.service.FuncionarioService;
 import br.univille.sistemafarmacia.service.ProdutoService;
 import br.univille.sistemafarmacia.service.VendaService;
@@ -29,6 +30,8 @@ public class VendaController {
     private FuncionarioService serviceFuncionario;
     @Autowired
     private ProdutoService serviceProdutos;
+    @Autowired
+    private FormaPagamentoService servicePagamento;
 
     @GetMapping
     public ModelAndView index(){
@@ -42,15 +45,15 @@ public class VendaController {
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
         var listaProdutos = serviceProdutos.getAll();
-        //var desconto = venda.calculaDesconto();
+        var listaPagamento = servicePagamento.getAll();
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
         dados.put("listaCompradores", listaClientes);
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
+        dados.put("listaPagamento", listaPagamento);
         dados.put("novoItem", new ItemDeVenda());
-        //dados.put("desconto", desconto);
         return new ModelAndView("venda/form", dados);
     }
 
@@ -66,15 +69,15 @@ public class VendaController {
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
         var listaProdutos = serviceProdutos.getAll();
-        //var desconto = venda.calculaDesconto();
+        var listaPagamento = servicePagamento.getAll();
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
         dados.put("listaCompradores", listaClientes);
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
+        dados.put("listaPagamento", listaPagamento);
         dados.put("novoItem", new ItemDeVenda());
-        //dados.put("desconto", desconto);
         return new ModelAndView("venda/form", dados);
     }
 
@@ -84,15 +87,15 @@ public class VendaController {
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
         var listaProdutos = serviceProdutos.getAll();
-        //var desconto = venda.calculaDesconto();
+        var listaPagamento = servicePagamento.getAll();
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
         dados.put("listaCompradores", listaClientes);
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
+        dados.put("listaPagamento", listaPagamento);
         dados.put("novoItem", new ItemDeVenda());
-        //dados.put("desconto", desconto);
         return new ModelAndView("venda/form", dados);
     }
 }
