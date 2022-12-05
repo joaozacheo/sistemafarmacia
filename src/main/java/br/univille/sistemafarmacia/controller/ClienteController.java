@@ -51,9 +51,7 @@ public class ClienteController {
         return new ModelAndView("cliente/form",dados);
     }
     @PostMapping(params = "form")
-    public ModelAndView save(@Validated Cliente cliente,
-                            BindingResult bindingResult){
-
+    public ModelAndView save(@Validated Cliente cliente, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             var listaCidades = cidadeService.getAll();
             HashMap<String,Object> dados = new HashMap<>();

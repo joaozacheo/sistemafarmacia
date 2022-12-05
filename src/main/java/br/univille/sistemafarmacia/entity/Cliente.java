@@ -7,20 +7,33 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column(length = 500, nullable = false)
+    @NotBlank(message = "Campo não pode ser em branco")
     private String nome;
+
     @Column(length = 1500, nullable = false)
+    @NotBlank(message = "Campo não pode ser em branco")
     private String endereco;
+
     @Column(length = 14, nullable = false)
+    @NotBlank(message = "Campo não pode ser em branco")
     private String cpf;
+
+    @NotBlank(message = "Campo não pode ser em branco")
+    @Pattern(regexp = "Masculino|Feminino", flags = Pattern.Flag.CANON_EQ, message = "Inválido")
     private String sexo;
+
     private String contato;
+    
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
     private Cidade cidadeResidencia;
 
