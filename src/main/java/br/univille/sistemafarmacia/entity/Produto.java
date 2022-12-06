@@ -1,19 +1,26 @@
 package br.univille.sistemafarmacia.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(length = 500, nullable = false)
+    @NotBlank(message = "Campo não pode ser em branco")
     private String nome;
     private String descricao;
+    @Min(value = 0, message = "Quantidade mínima é 0")
     private int qtdEstoque;
+    @Min(value = 0, message = "Valor mínimo é 0")
     private float valorUnitario;
     @ManyToOne
     private Fornecedor fornecedor;
