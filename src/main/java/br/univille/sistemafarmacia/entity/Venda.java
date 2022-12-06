@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,19 +25,33 @@ public class Venda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    // @NotEmpty(message = "Selecione a data da venda")
     private Date data;
+
+    // @Min(value = 0, message = "Valor mínimo é R$0.00")
     private float subtotal;
+
+    // @Min(value = 0, message = "Valor mínimo é R$0.00")
     private float valorFinal;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "venda_id")
+    // @NotEmpty(message = "A venda deve ter no mínimo um item")
     private List<ItemDeVenda> itens = new ArrayList<>();
+
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    // @NotEmpty(message = "Selecione o comprador")
     private Cliente comprador;
+
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    // @NotEmpty(message = "Selecione o vendedor")
     private Funcionario vendedor;
+
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    // @NotEmpty(message = "Selecione a forma de pagamento")
     private FormaPagamento formaPagamento;
 
     public long getId() {

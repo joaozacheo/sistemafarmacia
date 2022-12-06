@@ -2,8 +2,11 @@ package br.univille.sistemafarmacia.controller;
 
 import java.util.HashMap;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,7 +44,15 @@ public class FuncionarioController {
     }
 
     @PostMapping(params = "form")
-    public ModelAndView save(Funcionario funcionario){
+    public ModelAndView save(@Valid Funcionario funcionario, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            var listaFuncionarios = service.getAll();
+            var listaCidades = serviceCidade.getAll();
+            HashMap<String, Object> dados = new HashMap<>();
+            dados.put("listaFuncionarios", listaFuncionarios);
+            dados.put("listaCidades", listaCidades);
+            return new ModelAndView("funcionario/form", dados);
+        }
         service.save(funcionario);
         return new ModelAndView("redirect:/funcionarios");
     }

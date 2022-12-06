@@ -9,21 +9,24 @@
             <form th:action="@{/vendas/(form)}" method="POST" th:object="${venda}">
                 <input type="hidden" th:field="*{id}">
                 <div class="row">
-                    <div class="mb-3 col"> <!--Mudar para pesquisa com CPF-->
+                    <div class="mb-3 col">
                         <label for="txt-comprador">Comprador:</label>
                         <select name="comprador" id="txt-comprador" class="form-select" th:field="*{comprador}">
                             <option th:each="comprador : ${listaCompradores}" th:text="${comprador.nome}" th:value="${comprador.id}"></option>
                         </select>
+                        <!-- <p th:if="${#fields.hasErrors('comprador')}" th:errors="*{comprador}" class="alert alert-danger"></p> -->
                     </div>
                     <div class="mb-3 col">
                         <label for="txt-vendedor">Vendedor:</label>
                         <select name="vendedor" id="txt-vendedor" class="form-select" th:field="*{vendedor}">
                             <option th:each="vendedor : ${listaVendedores}" th:text="${vendedor.nome}" th:value="${vendedor.id}"></option>
                         </select>
+                        <!-- <p th:if="${#fields.hasErrors('vendedor')}" th:errors="*{vendedor}" class="alert alert-danger"></p> -->
                     </div>
                     <div class="mb-3 col">
                         <label for="txt-data">Data da Venda:</label>
                         <input type="date" id="txt-data" th:field="*{data}" class="form-control">
+                        <!-- <p th:if="${#fields.hasErrors('data')}" th:errors="*{data}" class="alert alert-danger"></p> -->
                     </div>
                 </div>
                 <div class="row">
@@ -32,10 +35,12 @@
                         <select name="formaPagamento" id="txt-formaPagamento" class="form-select" th:field="*{formaPagamento}">
                             <option th:each="formaPagamento : ${listaPagamentos}" th:text="${formaPagamento.tipo}" th:value="${formaPagamento.id}"></option>
                         </select>
+                        <!-- <p th:if="${#fields.hasErrors('formaPagamento')}" th:errors="*{formaPagamento}" class="alert alert-danger"></p> -->
                     </div>
                     <div class="mb-3 col">
                         <label for="txt-subtotal">Subtotal:</label>
                         <input type="number" id="txt-subtotal" th:field="*{subtotal}" class="form-control" disabled>
+                        <!-- <p th:if="${#fields.hasErrors('subtotal')}" th:errors="*{subtotal}" class="alert alert-danger"></p> -->
                     </div>
                     <div class="mb-3 col">
                         <label for="txt-desconto">Desconto:</label>
@@ -44,6 +49,7 @@
                     <div class="mb-3 col">
                         <label for="txt-valorFinal">Total:</label>
                         <input type="number" id="txt-valorFinal" th:field="*{valorFinal}" class="form-control" disabled>
+                        <!-- <p th:if="${#fields.hasErrors('valorFinal')}" th:errors="*{valorFinal}" class="alert alert-danger"></p> -->
                     </div>
                 </div>
                 <div class="card mb-3">
@@ -62,10 +68,12 @@
                                     <select class="form-select" id="cbproduto" th:field="${novoItem.produto}">
                                         <option th:each="umProduto : ${listaProdutos}" th:value="${umProduto.id}" th:text="${umProduto.nome}"></option>
                                     </select>
+                                    <!-- <p th:if="${#${novoItem.produto}.hasErrors('produto')}" th:errors="${novoItem.produto}" class="alert alert-danger"></p> -->
                                 </div>
                                 <div class="mb-3">
                                     <label for="txt-qtdVenda">Quantidade:</label>
                                     <input type="number" id="txt-qtdVenda" class="form-control" th:field="${novoItem.qtdVenda}">
+                                    <!-- <p th:if="${#fields.hasErrors('novoItem.qtdVenda')}" th:errors="*{novoItem.qtdVenda}" class="alert alert-danger"></p> -->
                                 </div>
                                 <button name="incitem" type="submit" class="btn btn-success" id="addItem">Adicionar Item</button>
                             </div>
@@ -91,6 +99,7 @@
                                     <td>
                                         <button type="butmit" name="removeitem" th:value="__${stat.index}__" class="btn btn-danger">Remover</button>
                                     </td>
+                                    <!-- <p th:if="${#fields.hasErrors('umItem')}" th:errors="${umItem}" class="alert alert-danger"></p> -->
                                 </tr>
                             </tbody>
                         </table>

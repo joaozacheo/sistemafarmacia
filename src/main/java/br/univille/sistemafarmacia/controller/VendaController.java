@@ -2,8 +2,11 @@ package br.univille.sistemafarmacia.controller;
 
 import java.util.HashMap;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,7 +61,23 @@ public class VendaController {
     }
 
     @PostMapping(params = "save")
-    public ModelAndView save(Venda venda){
+    public ModelAndView save(@Valid Venda venda, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            var listaVendas = service.getAll();
+            var listaClientes = serviceCliente.getAll();
+            var listaFuncionarios = serviceFuncionario.getAll();
+            var listaProdutos = serviceProdutos.getAll();
+            var listaPagamentos = servicePagamento.getAll();
+
+            HashMap<String, Object> dados = new HashMap<>();
+            dados.put("listaVendas", listaVendas);
+            dados.put("listaCompradores", listaClientes);
+            dados.put("listaVendedores", listaFuncionarios);
+            dados.put("listaProdutos", listaProdutos);
+            dados.put("listaPagamentos", listaPagamentos);
+            dados.put("novoItem", new ItemDeVenda());
+            return new ModelAndView("venda/form", dados);
+        }
         service.save(venda);
         
         for(int i = 1; i <= serviceProdutos.getAll().size(); i++){

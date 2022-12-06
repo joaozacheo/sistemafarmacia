@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Cidade {
@@ -12,6 +13,7 @@ public class Cidade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(length = 1500,unique = true)
+    @NotBlank(message = "Campo não pode ser em branco")
     private String nome;
 
     
