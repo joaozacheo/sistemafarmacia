@@ -14,19 +14,19 @@
                         <select name="comprador" id="txt-comprador" class="form-select" th:field="*{comprador}">
                             <option th:each="comprador : ${listaCompradores}" th:text="${comprador.nome}" th:value="${comprador.id}"></option>
                         </select>
-                        <!-- <p th:if="${#fields.hasErrors('comprador')}" th:errors="*{comprador}" class="alert alert-danger"></p> -->
+                        <p th:if="${#fields.hasErrors('comprador')}" th:errors="*{comprador}" class="alert alert-danger"></p>
                     </div>
                     <div class="mb-3 col">
                         <label for="txt-vendedor">Vendedor:</label>
                         <select name="vendedor" id="txt-vendedor" class="form-select" th:field="*{vendedor}">
                             <option th:each="vendedor : ${listaVendedores}" th:text="${vendedor.nome}" th:value="${vendedor.id}"></option>
                         </select>
-                        <!-- <p th:if="${#fields.hasErrors('vendedor')}" th:errors="*{vendedor}" class="alert alert-danger"></p> -->
+                        <p th:if="${#fields.hasErrors('vendedor')}" th:errors="*{vendedor}" class="alert alert-danger"></p>
                     </div>
                     <div class="mb-3 col">
                         <label for="txt-data">Data da Venda:</label>
                         <input type="date" id="txt-data" th:field="*{data}" class="form-control">
-                        <!-- <p th:if="${#fields.hasErrors('data')}" th:errors="*{data}" class="alert alert-danger"></p> -->
+                        <p th:if="${#fields.hasErrors('data')}" th:errors="*{data}" class="alert alert-danger"></p>
                     </div>
                 </div>
                 <div class="row">
@@ -35,12 +35,12 @@
                         <select name="formaPagamento" id="txt-formaPagamento" class="form-select" th:field="*{formaPagamento}">
                             <option th:each="formaPagamento : ${listaPagamentos}" th:text="${formaPagamento.tipo}" th:value="${formaPagamento.id}"></option>
                         </select>
-                        <!-- <p th:if="${#fields.hasErrors('formaPagamento')}" th:errors="*{formaPagamento}" class="alert alert-danger"></p> -->
+                        <p th:if="${#fields.hasErrors('formaPagamento')}" th:errors="*{formaPagamento}" class="alert alert-danger"></p>
                     </div>
                     <div class="mb-3 col">
                         <label for="txt-subtotal">Subtotal:</label>
                         <input type="number" id="txt-subtotal" th:field="*{subtotal}" class="form-control" disabled>
-                        <!-- <p th:if="${#fields.hasErrors('subtotal')}" th:errors="*{subtotal}" class="alert alert-danger"></p> -->
+                        <p th:if="${#fields.hasErrors('subtotal')}" th:errors="*{subtotal}" class="alert alert-danger"></p>
                     </div>
                     <div class="mb-3 col">
                         <label for="txt-desconto">Desconto:</label>
@@ -49,7 +49,7 @@
                     <div class="mb-3 col">
                         <label for="txt-valorFinal">Total:</label>
                         <input type="number" id="txt-valorFinal" th:field="*{valorFinal}" class="form-control" disabled>
-                        <!-- <p th:if="${#fields.hasErrors('valorFinal')}" th:errors="*{valorFinal}" class="alert alert-danger"></p> -->
+                        <p th:if="${#fields.hasErrors('valorFinal')}" th:errors="*{valorFinal}" class="alert alert-danger"></p>
                     </div>
                 </div>
                 <div class="card mb-3">
@@ -88,7 +88,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="id-item">
                                 <tr th:each="umItem, stat : *{itens}">
                                     <td th:text="${umItem.produto?.nome}"></td>
                                     <input type="hidden" th:field="*{itens[__${stat.index}__].produto}">

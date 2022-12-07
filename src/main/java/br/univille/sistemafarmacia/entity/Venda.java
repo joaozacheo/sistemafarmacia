@@ -15,8 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,30 +27,30 @@ public class Venda {
 
     @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    // @NotEmpty(message = "Selecione a data da venda")
+    @NotNull(message = "Selecione a data da venda")
     private Date data;
 
-    // @Min(value = 0, message = "Valor mínimo é R$0.00")
+    //@Min(value = 0, message = "Valor mínimo é R$0.00")
     private float subtotal;
 
-    // @Min(value = 0, message = "Valor mínimo é R$0.00")
+    //@Min(value = 0, message = "Valor mínimo é R$0.00")
     private float valorFinal;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "venda_id")
-    // @NotEmpty(message = "A venda deve ter no mínimo um item")
+    @NotNull(message = "A venda deve ter no mínimo um item")
     private List<ItemDeVenda> itens = new ArrayList<>();
 
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
-    // @NotEmpty(message = "Selecione o comprador")
+    @NotNull(message = "Selecione o comprador")
     private Cliente comprador;
 
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
-    // @NotEmpty(message = "Selecione o vendedor")
+    @NotNull(message = "Selecione o vendedor")
     private Funcionario vendedor;
 
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
-    // @NotEmpty(message = "Selecione a forma de pagamento")
+    @NotNull(message = "Selecione a forma de pagamento")
     private FormaPagamento formaPagamento;
 
     public long getId() {

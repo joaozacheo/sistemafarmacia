@@ -98,7 +98,23 @@ public class VendaController {
     }
 
     @PostMapping(params = "incitem")
-    public ModelAndView incluirItem(Venda venda, ItemDeVenda novoItem){
+    public ModelAndView incluirItem(@Valid Venda venda, ItemDeVenda novoItem, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            var listaVendas = service.getAll();
+            var listaClientes = serviceCliente.getAll();
+            var listaFuncionarios = serviceFuncionario.getAll();
+            var listaProdutos = serviceProdutos.getAll();
+            var listaPagamentos = servicePagamento.getAll();
+
+            HashMap<String, Object> dados = new HashMap<>();
+            dados.put("listaVendas", listaVendas);
+            dados.put("listaCompradores", listaClientes);
+            dados.put("listaVendedores", listaFuncionarios);
+            dados.put("listaProdutos", listaProdutos);
+            dados.put("listaPagamentos", listaPagamentos);
+            dados.put("novoItem", novoItem);
+            return new ModelAndView("venda/form", dados);
+        }
         venda.getItens().add(novoItem);
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();
