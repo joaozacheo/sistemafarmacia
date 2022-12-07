@@ -35,8 +35,7 @@ public class CidadeController {
     @PostMapping(params = "form")
     public ModelAndView save(@Valid Cidade cidade, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            var listaCidades = service.getAll();
-            return new ModelAndView("cidade/form","listaCidades", listaCidades);
+            return new ModelAndView("cidade/form");
         }
         service.save(cidade);
         

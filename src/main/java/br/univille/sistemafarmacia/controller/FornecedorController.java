@@ -46,10 +46,8 @@ public class FornecedorController {
     @PostMapping(params = "form")
     public ModelAndView save(@Valid Fornecedor fornecedor, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            var listaFornecedores = service.getAll();
             var listaCidades = serviceCidade.getAll();
             HashMap<String, Object> dados = new HashMap<>();
-            dados.put("listaFornecedores", listaFornecedores);
             dados.put("listaCidades", listaCidades);
             return new ModelAndView("fornecedor/form", dados);
         }

@@ -63,14 +63,12 @@ public class VendaController {
     @PostMapping(params = "save")
     public ModelAndView save(@Valid Venda venda, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            var listaVendas = service.getAll();
             var listaClientes = serviceCliente.getAll();
             var listaFuncionarios = serviceFuncionario.getAll();
             var listaProdutos = serviceProdutos.getAll();
             var listaPagamentos = servicePagamento.getAll();
 
             HashMap<String, Object> dados = new HashMap<>();
-            dados.put("listaVendas", listaVendas);
             dados.put("listaCompradores", listaClientes);
             dados.put("listaVendedores", listaFuncionarios);
             dados.put("listaProdutos", listaProdutos);
@@ -100,14 +98,12 @@ public class VendaController {
     @PostMapping(params = "incitem")
     public ModelAndView incluirItem(@Valid Venda venda, ItemDeVenda novoItem, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            var listaVendas = service.getAll();
             var listaClientes = serviceCliente.getAll();
             var listaFuncionarios = serviceFuncionario.getAll();
             var listaProdutos = serviceProdutos.getAll();
             var listaPagamentos = servicePagamento.getAll();
 
             HashMap<String, Object> dados = new HashMap<>();
-            dados.put("listaVendas", listaVendas);
             dados.put("listaCompradores", listaClientes);
             dados.put("listaVendedores", listaFuncionarios);
             dados.put("listaProdutos", listaProdutos);

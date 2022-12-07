@@ -37,8 +37,7 @@ public class FormaPagamentoController {
     @PostMapping(params = "form")
     public ModelAndView save(@Valid FormaPagamento formaPagamento, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            var listaFormaPagamento = service.getAll();
-            return new ModelAndView("formaPagamento/form","listaFormaPagamento",listaFormaPagamento);
+            return new ModelAndView("formaPagamento/form");
         }
         service.save(formaPagamento);
         

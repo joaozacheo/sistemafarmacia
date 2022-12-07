@@ -46,10 +46,8 @@ public class FuncionarioController {
     @PostMapping(params = "form")
     public ModelAndView save(@Valid Funcionario funcionario, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            var listaFuncionarios = service.getAll();
             var listaCidades = serviceCidade.getAll();
             HashMap<String, Object> dados = new HashMap<>();
-            dados.put("listaFuncionarios", listaFuncionarios);
             dados.put("listaCidades", listaCidades);
             return new ModelAndView("funcionario/form", dados);
         }
