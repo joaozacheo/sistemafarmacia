@@ -27,6 +27,7 @@
                 <div class="mb-3">
                     <label for="txt-fornecedor">Fornecedor:</label>
                     <select name="fornecedor" id="txt-fornecedor" class="form-select" th:field="*{fornecedor}">
+                        <option value=""></option>
                         <option th:each="fornecedor : ${listaFornecedores}" th:text="${fornecedor.nome}" th:value="${fornecedor.id}"></option>
                     </select>
                 </div>
