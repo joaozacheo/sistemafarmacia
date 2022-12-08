@@ -74,6 +74,7 @@ public class VendaController {
             dados.put("listaProdutos", listaProdutos);
             dados.put("listaPagamentos", listaPagamentos);
             dados.put("novoItem", new ItemDeVenda());
+            dados.put("venda", venda);
             return new ModelAndView("venda/form", dados);
         }
         service.save(venda);
@@ -96,8 +97,8 @@ public class VendaController {
     }
 
     @PostMapping(params = "incitem")
-    public ModelAndView incluirItem(@Valid Venda venda, ItemDeVenda novoItem, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public ModelAndView incluirItem(Venda venda, ItemDeVenda novoItem, BindingResult bindingResult){
+        /*if(bindingResult.hasErrors()){
             var listaClientes = serviceCliente.getAll();
             var listaFuncionarios = serviceFuncionario.getAll();
             var listaProdutos = serviceProdutos.getAll();
@@ -109,8 +110,9 @@ public class VendaController {
             dados.put("listaProdutos", listaProdutos);
             dados.put("listaPagamentos", listaPagamentos);
             dados.put("novoItem", novoItem);
+            dados.put("venda", venda);
             return new ModelAndView("venda/form", dados);
-        }
+        }*/
         venda.getItens().add(novoItem);
         var listaClientes = serviceCliente.getAll();
         var listaFuncionarios = serviceFuncionario.getAll();

@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -30,10 +31,9 @@ public class Venda {
     @NotNull(message = "Selecione a data da venda")
     private Date data;
 
-    //@Min(value = 0, message = "Valor mínimo é R$0.00")
+    @DecimalMin(value = "0.01", message = "O valor mínimo é R$0.01")
     private float subtotal;
 
-    //@Min(value = 0, message = "Valor mínimo é R$0.00")
     private float valorFinal;
 
     @OneToMany(cascade = CascadeType.ALL)
