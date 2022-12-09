@@ -14,8 +14,11 @@
               <button class="btn btn-outline-success" name="btn-pesquisar" type="submit">Pesquisar</button>
             </form>
           </div>
-            <table class="table" id="tabproduto">
-                <thead>
+
+          <div id="alerta-del" class="alert alert-danger d-none" th:name="${alertaDel}">Não é possível deletar um produto cadastrado em uma venda</div>
+
+          <table class="table" id="tabproduto">
+              <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
@@ -25,8 +28,8 @@
                         <th>Fornecedor</th>
                         <th></th>
                     </tr>
-                </thead>
-                <tbody>
+              </thead>
+              <tbody>
                     <tr th:each="produto : ${listaProdutos}">
                         <td th:text="${produto.id}"></td>
                         <td th:text="${produto.nome}"></td>
@@ -39,8 +42,8 @@
                             <button class="btn btn-danger js-delete" th:data-id="${produto.id}">Excluir</button>
                         </td>
                     </tr>
-                </tbody>
-            </table>  
+              </tbody>
+          </table>  
         </main>
         <div class="modal" tabindex="-1" id="modalproduto">
           <div class="modal-dialog">

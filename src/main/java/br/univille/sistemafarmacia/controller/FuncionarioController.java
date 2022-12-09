@@ -1,6 +1,8 @@
 package br.univille.sistemafarmacia.controller;
 
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.validation.Valid;
 
@@ -28,10 +30,17 @@ public class FuncionarioController {
     @Autowired
     private CidadeService serviceCidade;
 
+    int alertaDel = 0;
+
     @GetMapping
     public ModelAndView index(@RequestParam(required = false, name = "busca") String busca){
         var listaFuncionarios = service.getAll(busca);
-        return new ModelAndView("funcionario/index", "listaFuncionarios", listaFuncionarios);
+
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("listaFuncionarios", listaFuncionarios);
+        dados.put("alertaDel", alertaDel);
+
+        return new ModelAndView("funcionario/index", dados);
     }
 
     @GetMapping("/novo")
@@ -71,7 +80,20 @@ public class FuncionarioController {
 
     @GetMapping("/excluir/{id}")
     public ModelAndView excluir(@PathVariable("id") long id){
-        service.delete(id);
-        return new ModelAndView("redirect:/funcionarios");
+        alertaDel = 0;
+        try {
+            service.delete(id);
+        } catch(Exception e){
+            alertaDel = 1;
+        }
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                alertaDel = 0;
+            }
+        }, 2000);
+        
+        return new ModelAndView("redirect:/funcionarios", "alertaDel", alertaDel);
     }
 }

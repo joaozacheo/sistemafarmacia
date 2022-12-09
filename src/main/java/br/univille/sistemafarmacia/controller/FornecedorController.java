@@ -1,6 +1,8 @@
 package br.univille.sistemafarmacia.controller;
 
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.validation.Valid;
 
@@ -28,10 +30,17 @@ public class FornecedorController {
     @Autowired
     private CidadeService serviceCidade;
 
+    int alertaDel = 0;
+
     @GetMapping
     public ModelAndView index(@RequestParam(required = false, name = "busca") String busca){
         var listaFornecedores = service.getAll(busca);
-        return new ModelAndView("fornecedor/index", "listaFornecedores", listaFornecedores);
+
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("listaFornecedores", listaFornecedores);
+        dados.put("alertaDel", alertaDel);
+
+        return new ModelAndView("fornecedor/index", dados);
     }
 
     @GetMapping("/novo")
@@ -70,7 +79,20 @@ public class FornecedorController {
     }
     @GetMapping("/excluir/{id}")
     public ModelAndView excluir(@PathVariable("id") long id){
-        service.excluir(id);
-        return new ModelAndView("redirect:/fornecedores");
+        alertaDel = 0;
+        try {
+            service.excluir(id);
+        } catch(Exception e){
+            alertaDel = 1;
+        }
+
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                alertaDel = 0;
+            }
+        }, 2000);
+
+        return new ModelAndView("fornecedor/index", "alertaDel", alertaDel);
     }
 }

@@ -13,6 +13,9 @@
               <button class="btn btn-outline-success" name="btn-pesquisar" type="submit">Pesquisar</button>
             </form>
           </div>
+
+          <div id="alerta-del" class="alert alert-danger d-none" th:name="${alertaDel}">Não é possível deletar um fornecedor cadastrado em um produto</div>
+
           <table class="table" id="tabfornecedor">
               <thead>
                   <tr>
