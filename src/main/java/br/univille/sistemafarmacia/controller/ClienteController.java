@@ -1,6 +1,8 @@
 package br.univille.sistemafarmacia.controller;
 
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +28,17 @@ public class ClienteController {
     @Autowired
     private ClienteService service;
 
+    int alertaDel = 0;
+
     @GetMapping
     public ModelAndView index(@RequestParam(required = false, name = "busca") String busca){
         var listaClientes = service.getAll(busca);
+        
+        HashMap<String, Object> dados = new HashMap<>();
+        dados.put("listaClientes", listaClientes);
+        dados.put("alertaDel", alertaDel);
 
-        return new ModelAndView("cliente/index", "listaClientes", listaClientes);
-
+        return new ModelAndView("cliente/index", dados);
     }
 
     @GetMapping("/novo")
@@ -71,9 +78,20 @@ public class ClienteController {
     
     @GetMapping("/delete/{id}")
     public ModelAndView delete(@PathVariable("id") long id){
+        alertaDel = 0;
+        try {
+            service.delete(id);
+        } catch(Exception e){
+            alertaDel = 1;
+        }
 
-        service.delete(id);
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                alertaDel = 0;
+            }
+        }, 2000);
 
-        return new ModelAndView("redirect:/clientes");
+        return new ModelAndView("cliente/index", "alertaDel", alertaDel);
     }
 }

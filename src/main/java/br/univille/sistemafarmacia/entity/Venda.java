@@ -70,6 +70,7 @@ public class Venda {
         for(int i = 0; i < itens.size(); i++){
             subtotal += itens.get(i).getProduto().getValorUnitario() * itens.get(i).getQtdVenda();
         }
+        subtotal = Math.round(subtotal * 100.0f)/100.0f;
         return subtotal;
     }
     public void setSubtotal(float subtotal) {
@@ -96,6 +97,7 @@ public class Venda {
                 }
             }
         }
+        valorFinal = Math.round(valorFinal * 100.0f)/100.0f;
         return valorFinal;
     }
     public void setValorFinal(float valorFinal) {
