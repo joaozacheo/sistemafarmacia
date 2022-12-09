@@ -67,6 +67,10 @@
                             Itens de Venda Vinculados
                         </h5>
 
+                        <div id="alerta-estoque" class="alert alert-danger d-none" th:name="${alerta1}">Quantidade não deve ser maior do que o estoque</div>
+                        <div id="alerta-minimo" class="alert alert-danger d-none" th:name="${alerta2}">Quantidade mínima é 1</div>
+                        <div id="alerta-produto" class="alert alert-danger d-none" th:name="${alerta3}">Nenhum produto foi selecionado</div>
+
                         <button type="reset" class="btn btn-success mb-3" id="novoItem">Novo Item</button>
                         
                         <div class="card mb-3 d-none" id="form-novoItem">
@@ -83,7 +87,6 @@
                                     <label for="txt-qtdVenda">Quantidade:</label>
                                     <input type="number" id="txt-qtdVenda" class="form-control" th:field="${novoItem.qtdVenda}">
                                 </div>
-                                <div id="alerta-estoque" class="alert alert-danger d-none" th:name="${alerta}">Quantidade não deve ser maior do que o estoque</div>
                                 <button name="incitem" type="submit" class="btn btn-success" id="addItem">Adicionar Item</button>
                             </div>
                         </div>
