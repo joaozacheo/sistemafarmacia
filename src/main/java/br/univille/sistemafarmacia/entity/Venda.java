@@ -14,8 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,7 +34,7 @@ public class Venda {
 
     private float valorFinal;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @NotNull(message = "A venda deve ter no mínimo um item")
     @JoinColumn(name = "venda_id")
     private List<ItemDeVenda> itens = new ArrayList<>();

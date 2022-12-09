@@ -116,6 +116,25 @@ public class VendaController {
             dados.put("venda", venda);
             return new ModelAndView("venda/form", dados);
         }*/
+        var alerta = 0;
+        if(novoItem.getQtdVenda() > novoItem.getProduto().getQtdEstoque() || novoItem.getProduto() == null){
+            alerta = 1;
+            var busca = "";
+            var listaClientes = serviceCliente.getAll(busca);
+            var listaFuncionarios = serviceFuncionario.getAll(busca);
+            var listaProdutos = serviceProdutos.getAll(busca);
+            var listaPagamentos = servicePagamento.getAll();
+
+            HashMap<String, Object> dados = new HashMap<>();
+            dados.put("listaCompradores", listaClientes);
+            dados.put("listaVendedores", listaFuncionarios);
+            dados.put("listaProdutos", listaProdutos);
+            dados.put("listaPagamentos", listaPagamentos);
+            dados.put("novoItem", new ItemDeVenda());
+            dados.put("venda", venda);
+            dados.put("alerta", alerta);
+            return new ModelAndView("venda/form", dados);
+        }
         venda.getItens().add(novoItem);
         var busca = "";
         var listaClientes = serviceCliente.getAll(busca);

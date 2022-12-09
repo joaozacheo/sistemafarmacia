@@ -4,7 +4,8 @@
     const btnAddItem = document.getElementById('addItem');
     const itens = document.getElementById('id-item');
     const num = itens.childElementCount;
-
+    let alerta = document.getElementById('alerta-estoque');
+    let valorAlerta = $('#alerta-estoque').attr('name');
     
     if(num == 0){
         formNovoItem.classList.remove('d-none');
@@ -15,5 +16,9 @@
         formNovoItem.classList.remove('d-none');
         btnNovoItem.classList.toggle('d-none');
     });
+
+    if(valorAlerta == 1){
+        alerta.classList.remove('d-none');
+    }
     
 })();
