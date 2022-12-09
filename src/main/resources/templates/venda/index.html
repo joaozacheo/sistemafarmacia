@@ -26,7 +26,8 @@
                 </thead>
                 <tbody>
                     <tr th:each="venda : ${listaVendas}">
-                        <td th:text="${#lists.size(venda.getItens)}"></td>
+                        <!-- <td th:text="${#lists.size(venda.getItens)}"></td> -->
+                        <td th:text="${venda.qtdProdVendidos()}"></td>
                         <td th:text="${venda.comprador?.nome}"></td>
                         <td th:text="${venda.vendedor?.nome}"></td>
                         <td th:text="${#dates.format(venda.data, 'dd/MM/yyyy')}"></td>

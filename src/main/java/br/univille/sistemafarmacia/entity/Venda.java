@@ -155,4 +155,12 @@ public class Venda {
         }
         return desconto;
     }
+
+    public int qtdProdVendidos(){
+        int qtdProdVendidos = 0;
+        for(int i = 0; i < itens.size(); i++){
+            qtdProdVendidos += itens.get(i).getQtdVenda();
+        }
+        return qtdProdVendidos;
+    }
 }
