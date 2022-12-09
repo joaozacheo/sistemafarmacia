@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,14 +31,14 @@ public class Venda {
     @NotNull(message = "Selecione a data da venda")
     private Date data;
 
-    @DecimalMin(value = "0.01", message = "O valor mínimo é R$0.01")
+    //@DecimalMin(value = "0", inclusive = false, message = "O valor mínimo é R$0.01")
     private float subtotal;
 
     private float valorFinal;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "venda_id")
+    @OneToMany
     @NotNull(message = "A venda deve ter no mínimo um item")
+    @JoinColumn(name = "venda_id")
     private List<ItemDeVenda> itens = new ArrayList<>();
 
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.sistemafarmacia.entity.Fornecedor;
@@ -28,15 +29,16 @@ public class FornecedorController {
     private CidadeService serviceCidade;
 
     @GetMapping
-    public ModelAndView index(){
-        var listaFornecedores = service.getAll();
+    public ModelAndView index(@RequestParam(required = false, name = "busca") String busca){
+        var listaFornecedores = service.getAll(busca);
         return new ModelAndView("fornecedor/index", "listaFornecedores", listaFornecedores);
     }
 
     @GetMapping("/novo")
     public ModelAndView novo(){
+        var busca = "";
         var fornecedor = new Fornecedor();
-        var listaCidades = serviceCidade.getAll();
+        var listaCidades = serviceCidade.getAll(busca);
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("fornecedor", fornecedor);
         dados.put("listaCidades", listaCidades);
@@ -46,7 +48,8 @@ public class FornecedorController {
     @PostMapping(params = "form")
     public ModelAndView save(@Valid Fornecedor fornecedor, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            var listaCidades = serviceCidade.getAll();
+            var busca = "";
+            var listaCidades = serviceCidade.getAll(busca);
             HashMap<String, Object> dados = new HashMap<>();
             dados.put("listaCidades", listaCidades);
             return new ModelAndView("fornecedor/form", dados);
@@ -57,8 +60,9 @@ public class FornecedorController {
 
     @GetMapping("/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") long id){
+        var busca = "";
         var fornecedor = service.getById(id);
-        var listaCidades = serviceCidade.getAll();
+        var listaCidades = serviceCidade.getAll(busca);
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("fornecedor", fornecedor);
         dados.put("listaCidades", listaCidades);

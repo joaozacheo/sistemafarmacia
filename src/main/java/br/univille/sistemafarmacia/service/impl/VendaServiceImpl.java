@@ -16,8 +16,13 @@ public class VendaServiceImpl implements VendaService{
     private VendaRepository repositorio;
 
     @Override
-    public List<Venda> getAll() {
-        return repositorio.findAll();
+    public List<Venda> getAll(String busca) {
+
+        if(busca == null || busca == ""){
+            return repositorio.findAll();
+        }else{
+            return repositorio.findByComprador_NomeIgnoreCaseContainingOrVendedor_NomeIgnoreCaseContainingOrderByDataDesc(busca, busca);
+        }
     }
 
     @Override

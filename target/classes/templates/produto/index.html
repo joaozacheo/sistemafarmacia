@@ -7,7 +7,13 @@
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
-            <a href="/produtos/novo" class="btn btn-success mb-3">Novo Produto</a>
+          <div class="row">
+            <a href="/produtos/novo" class="btn btn-success mb-3 col-2">Novo Produto</a>
+            <form class="d-flex mb-3 col-10" role="search" th:action="@{/produtos/}" method="GET">
+              <input class="form-control me-2" name="busca" type="search" placeholder="Pesquise pelo nome ou descrição ou fornecedor" aria-label="Search">
+              <button class="btn btn-outline-success" name="btn-pesquisar" type="submit">Pesquisar</button>
+            </form>
+          </div>
             <table class="table" id="tabproduto">
                 <thead>
                     <tr>

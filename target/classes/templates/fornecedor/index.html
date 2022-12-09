@@ -6,32 +6,38 @@
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
-            <a href="/fornecedores/novo" class="btn btn-success mb-3">Novo Fornecedor</a>
-            <table class="table" id="tabfornecedor">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Endereço</th>
-                        <th>Cidade</th>
-                        <th>Contato</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="fornecedor : ${listaFornecedores}">
-                        <td th:text="${fornecedor.id}"></td>
-                        <td th:text="${fornecedor.nome}"></td>
-                        <td th:text="${fornecedor.endereco}"></td>
-                        <td th:text="${fornecedor.cidadeOrigem?.nome}"></td>
-                        <td th:text="${fornecedor.contato}"></td>
-                        <td>
-                            <a th:href="@{'/fornecedores/alterar/'+ ${fornecedor.id}}" class="btn btn-warning">Alterar</a>
-                            <button class="btn btn-danger js-delete" th:data-id="${fornecedor.id}">Excluir</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>    
+          <div class="row">
+            <a href="/fornecedores/novo" class="btn btn-success mb-3 col-2">Novo Fornecedor</a>
+            <form class="d-flex mb-3 col-10" role="search" th:action="@{/fornecedores/}" method="GET">
+              <input class="form-control me-2" name="busca" type="search" placeholder="Pesquise pelo nome ou endereço ou contato" aria-label="Search">
+              <button class="btn btn-outline-success" name="btn-pesquisar" type="submit">Pesquisar</button>
+            </form>
+          </div>
+          <table class="table" id="tabfornecedor">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Nome</th>
+                      <th>Endereço</th>
+                      <th>Cidade</th>
+                      <th>Contato</th>
+                      <th></th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr th:each="fornecedor : ${listaFornecedores}">
+                      <td th:text="${fornecedor.id}"></td>
+                      <td th:text="${fornecedor.nome}"></td>
+                      <td th:text="${fornecedor.endereco}"></td>
+                      <td th:text="${fornecedor.cidadeOrigem?.nome}"></td>
+                      <td th:text="${fornecedor.contato}"></td>
+                      <td>
+                          <a th:href="@{'/fornecedores/alterar/'+ ${fornecedor.id}}" class="btn btn-warning">Alterar</a>
+                          <button class="btn btn-danger js-delete" th:data-id="${fornecedor.id}">Excluir</button>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>    
         </main>
         <div class="modal" tabindex="-1" id="modalfornecedor">
             <div class="modal-dialog">

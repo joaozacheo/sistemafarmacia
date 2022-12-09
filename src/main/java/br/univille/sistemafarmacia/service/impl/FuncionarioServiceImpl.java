@@ -16,8 +16,13 @@ public class FuncionarioServiceImpl implements FuncionarioService{
     private FuncionarioRepository repositorio;
 
     @Override
-    public List<Funcionario> getAll() {
-        return repositorio.findAll();
+    public List<Funcionario> getAll(String busca) {
+
+        if(busca == null || busca == ""){
+            return repositorio.findAll();
+        }else{
+            return repositorio.findByNomeIgnoreCaseContainingOrEnderecoIgnoreCaseContainingOrCpfIgnoreCaseContaining(busca, busca, busca);
+        }
     }
 
     @Override

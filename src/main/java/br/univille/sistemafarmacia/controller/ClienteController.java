@@ -2,14 +2,15 @@ package br.univille.sistemafarmacia.controller;
 
 import java.util.HashMap;
 
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.sistemafarmacia.entity.Cliente;
@@ -26,16 +27,18 @@ public class ClienteController {
     private ClienteService service;
 
     @GetMapping
-    public ModelAndView index(){
-        var listaClientes = service.getAll();
-        return new ModelAndView("cliente/index","listaClientes",listaClientes);
+    public ModelAndView index(@RequestParam(required = false, name = "busca") String busca){
+        var listaClientes = service.getAll(busca);
+
+        return new ModelAndView("cliente/index", "listaClientes", listaClientes);
 
     }
 
     @GetMapping("/novo")
     public ModelAndView novo(){
+        var busca = "";
         var cliente = new Cliente();
-        var listaCidades = cidadeService.getAll();
+        var listaCidades = cidadeService.getAll(busca);
         HashMap<String,Object> dados = new HashMap<>();
         dados.put("cliente",cliente);
         dados.put("listaCidades",listaCidades);
@@ -43,17 +46,19 @@ public class ClienteController {
     }
     @GetMapping("/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") long id){
+        var busca = "";
         var umCliente = service.findById(id);
-        var listaCidades = cidadeService.getAll();
+        var listaCidades = cidadeService.getAll(busca);
         HashMap<String,Object> dados = new HashMap<>();
         dados.put("cliente",umCliente);
         dados.put("listaCidades",listaCidades);
         return new ModelAndView("cliente/form",dados);
     }
     @PostMapping(params = "form")
-    public ModelAndView save(@Validated Cliente cliente, BindingResult bindingResult){
+    public ModelAndView save(@Valid Cliente cliente, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            var listaCidades = cidadeService.getAll();
+            var busca = "";
+            var listaCidades = cidadeService.getAll(busca);
             HashMap<String,Object> dados = new HashMap<>();
             dados.put("cliente",cliente);
             dados.put("listaCidades",listaCidades);

@@ -16,8 +16,12 @@ public class ProdutoServiceImpl implements ProdutoService{
     private ProdutoRepository repositorio;
 
     @Override
-    public List<Produto> getAll() {
-        return repositorio.findAll();
+    public List<Produto> getAll(String busca) {
+        if(busca == null || busca == ""){
+            return repositorio.findAll();
+        }else{
+            return repositorio.findByNomeIgnoreCaseContainingOrDescricaoIgnoreCaseContainingOrFornecedor_NomeIgnoreCaseContaining(busca, busca, busca);
+        }
     }
 
     @Override

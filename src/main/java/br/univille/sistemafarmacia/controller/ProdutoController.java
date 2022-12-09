@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.sistemafarmacia.entity.Produto;
@@ -24,15 +25,16 @@ public class ProdutoController {
     private FornecedorService serviceFornecedor;
 
     @GetMapping
-    public ModelAndView index(){
-        var listaProdutos = service.getAll();
+    public ModelAndView index(@RequestParam(required = false, name = "busca") String busca){
+        var listaProdutos = service.getAll(busca);
         return new ModelAndView("produto/index", "listaProdutos", listaProdutos);
     }
 
     @GetMapping("/novo")
     public ModelAndView novo(){
+        var busca = "";
         var produto = new Produto();
-        var listaFornecedores = serviceFornecedor.getAll();
+        var listaFornecedores = serviceFornecedor.getAll(busca);
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("produto", produto);
         dados.put("listaFornecedores", listaFornecedores);
@@ -47,8 +49,9 @@ public class ProdutoController {
 
     @GetMapping("/alterar/{id}")
     public ModelAndView alterar(@PathVariable("id") long id){
+        var busca = "";
         var produto = service.findById(id);
-        var listaFornecedores = serviceFornecedor.getAll();
+        var listaFornecedores = serviceFornecedor.getAll(busca);
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("produto", produto);
         dados.put("listaFornecedores", listaFornecedores);

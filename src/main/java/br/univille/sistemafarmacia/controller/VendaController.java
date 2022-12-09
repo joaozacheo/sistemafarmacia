@@ -37,17 +37,18 @@ public class VendaController {
     private FormaPagamentoService servicePagamento;
 
     @GetMapping
-    public ModelAndView index(){
-        var listaVendas = service.getAll();
+    public ModelAndView index(@RequestParam(required = false, name = "busca") String busca){
+        var listaVendas = service.getAll(busca);
         return new ModelAndView("venda/index", "listaVendas", listaVendas);
     }
 
     @GetMapping("/nova")
     public ModelAndView novo(){
+        var busca = "";
         var venda = new Venda();
-        var listaClientes = serviceCliente.getAll();
-        var listaFuncionarios = serviceFuncionario.getAll();
-        var listaProdutos = serviceProdutos.getAll();
+        var listaClientes = serviceCliente.getAll(busca);
+        var listaFuncionarios = serviceFuncionario.getAll(busca);
+        var listaProdutos = serviceProdutos.getAll(busca);
         var listaPagamentos = servicePagamento.getAll();
 
         HashMap<String, Object> dados = new HashMap<>();
@@ -63,9 +64,10 @@ public class VendaController {
     @PostMapping(params = "save")
     public ModelAndView save(@Valid Venda venda, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            var listaClientes = serviceCliente.getAll();
-            var listaFuncionarios = serviceFuncionario.getAll();
-            var listaProdutos = serviceProdutos.getAll();
+            var busca = "";
+            var listaClientes = serviceCliente.getAll(busca);
+            var listaFuncionarios = serviceFuncionario.getAll(busca);
+            var listaProdutos = serviceProdutos.getAll(busca);
             var listaPagamentos = servicePagamento.getAll();
 
             HashMap<String, Object> dados = new HashMap<>();
@@ -77,9 +79,10 @@ public class VendaController {
             dados.put("venda", venda);
             return new ModelAndView("venda/form", dados);
         }
+        var busca = "";
         service.save(venda);
         
-        for(int i = 1; i <= serviceProdutos.getAll().size(); i++){
+        for(int i = 1; i <= serviceProdutos.getAll(busca).size(); i++){
             int qtdProduto = 0;
             int qtdAtual = 0;
             var umProduto = serviceProdutos.findById(i);
@@ -114,9 +117,10 @@ public class VendaController {
             return new ModelAndView("venda/form", dados);
         }*/
         venda.getItens().add(novoItem);
-        var listaClientes = serviceCliente.getAll();
-        var listaFuncionarios = serviceFuncionario.getAll();
-        var listaProdutos = serviceProdutos.getAll();
+        var busca = "";
+        var listaClientes = serviceCliente.getAll(busca);
+        var listaFuncionarios = serviceFuncionario.getAll(busca);
+        var listaProdutos = serviceProdutos.getAll(busca);
         var listaPagamentos = servicePagamento.getAll();
 
         HashMap<String, Object> dados = new HashMap<>();
@@ -132,9 +136,10 @@ public class VendaController {
     @PostMapping(params = "removeitem")
     public ModelAndView removerItem(@RequestParam("removeitem") int index, Venda venda){
         venda.getItens().remove(index);
-        var listaClientes = serviceCliente.getAll();
-        var listaFuncionarios = serviceFuncionario.getAll();
-        var listaProdutos = serviceProdutos.getAll();
+        var busca = "";
+        var listaClientes = serviceCliente.getAll(busca);
+        var listaFuncionarios = serviceFuncionario.getAll(busca);
+        var listaProdutos = serviceProdutos.getAll(busca);
         var listaPagamentos = servicePagamento.getAll();
 
         HashMap<String, Object> dados = new HashMap<>();

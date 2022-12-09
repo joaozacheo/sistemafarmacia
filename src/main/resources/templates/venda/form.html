@@ -42,7 +42,10 @@
                     </div>
                     <div class="mb-3 col">
                         <label for="txt-subtotal">Subtotal:</label>
-                        <input type="number" id="txt-subtotal" th:field="*{subtotal}" class="form-control" disabled>
+                        <div class="input-group">
+                            <span class="input-group-text">R$</span>
+                            <input type="number" id="txt-subtotal" th:field="*{subtotal}" class="form-control" disabled>
+                        </div>
                         <p th:if="${#fields.hasErrors('subtotal')}" th:errors="*{subtotal}" class="alert alert-danger"></p>
                     </div>
                     <div class="mb-3 col">
@@ -51,7 +54,10 @@
                     </div>
                     <div class="mb-3 col">
                         <label for="txt-valorFinal">Total:</label>
-                        <input type="number" id="txt-valorFinal" th:field="*{valorFinal}" class="form-control" disabled>
+                        <div class="input-group">
+                            <span class="input-group-text">R$</span>
+                            <input type="number" id="txt-valorFinal" th:field="*{valorFinal}" class="form-control" disabled>
+                        </div>
                         <p th:if="${#fields.hasErrors('valorFinal')}" th:errors="*{valorFinal}" class="alert alert-danger"></p>
                     </div>
                 </div>
