@@ -11,20 +11,24 @@
                 <div class="mb-3">
                     <label for="txt-nome" class="form-label">Nome:</label>
                     <input type="text" id="txt-nome" class="form-control" th:field="*{nome}">
+                    <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="alert alert-danger"></p>
                 </div>
                 <div class="mb-3">
                     <label for="txt-endereco" class="form-label">Endereço:</label>
                     <input type="text" id="txt-endereco" class="form-control" th:field="*{endereco}">
+                    <p th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}" class="alert alert-danger"></p>
                 </div>
                 <div class="mb-3">
                     <label for="txt-cidadeResidencia">Cidade:</label>
                     <select id="txt-cidadeResidencia" class="form-select" th:field="*{cidadeOrigem}">
+                        <option value=""></option>
                         <option th:each="umaCidade : ${listaCidades}" th:text="${umaCidade.nome}" th:value="${umaCidade.id}"></option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="txt-contato" class="form-label">Contato:</label>
                     <input type="email" id="txt-contato" class="form-control" th:field="*{contato}">
+                    <p th:if="${#fields.hasErrors('contato')}" th:errors="*{contato}" class="alert alert-danger"></p>
                 </div>
                 <button type="submit" class="btn btn-success">Salvar</button>
             </form>    

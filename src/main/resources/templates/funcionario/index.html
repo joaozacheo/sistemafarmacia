@@ -7,7 +7,16 @@
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
-            <a href="/funcionarios/novo" class="btn btn-success mb-3">Novo Funcionário</a>
+          <div class="row">
+            <a href="/funcionarios/novo" class="btn btn-success mb-3 col-2">Novo Funcionário</a>
+            <form class="d-flex mb-3 col-10" role="search" th:action="@{/funcionarios/}" method="GET">
+              <input class="form-control me-2" name="busca" type="search" placeholder="Pesquise pelo nome ou endereço ou CPF" aria-label="Search">
+              <button class="btn btn-outline-success" name="btn-pesquisar" type="submit">Pesquisar</button>
+            </form>
+          </div>
+
+          <div id="alerta-del" class="alert alert-danger d-none" th:name="${alertaDel}">Não é possível deletar um funcionário cadastrado em uma venda</div>
+
             <table class="table" id="tabfuncionario">
                 <thead>
                     <tr>
@@ -50,7 +59,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" id="btncancelar" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+                <button type="button" class="btn btn-success" id="btnsim">Sim</button>
               </div>
             </div>
           </div>

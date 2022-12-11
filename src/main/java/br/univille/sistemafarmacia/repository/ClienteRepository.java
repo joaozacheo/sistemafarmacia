@@ -10,5 +10,5 @@ import br.univille.sistemafarmacia.entity.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente,Long>{
-    List<Cliente> findByNomeIgnoreCaseContaining(@Param("nome") String nome);
+    List<Cliente> findByNomeIgnoreCaseContainingOrEnderecoIgnoreCaseContainingOrCpfIgnoreCaseContaining(@Param("nome") String nome, @Param("endereco") String endereco, @Param("cpf") String cpf);
 }

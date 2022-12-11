@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,19 +23,33 @@ public class Venda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Temporal(value = TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "Selecione a data da venda")
     private Date data;
+
+    //@DecimalMin(value = "0", inclusive = false, message = "O valor mínimo é R$0.01")
     private float subtotal;
+
     private float valorFinal;
+
     @OneToMany(cascade = CascadeType.ALL)
+    @NotNull(message = "A venda deve ter no mínimo um item")
     @JoinColumn(name = "venda_id")
     private List<ItemDeVenda> itens = new ArrayList<>();
+
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    @NotNull(message = "Selecione o comprador")
     private Cliente comprador;
+
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    @NotNull(message = "Selecione o vendedor")
     private Funcionario vendedor;
-    //private FormaPagamento formaPagamento;
+
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    @NotNull(message = "Selecione a forma de pagamento")
+    private FormaPagamento formaPagamento;
 
     public long getId() {
         return id;
@@ -55,6 +70,7 @@ public class Venda {
         for(int i = 0; i < itens.size(); i++){
             subtotal += itens.get(i).getProduto().getValorUnitario() * itens.get(i).getQtdVenda();
         }
+        subtotal = Math.round(subtotal * 100.0f)/100.0f;
         return subtotal;
     }
     public void setSubtotal(float subtotal) {
@@ -66,7 +82,7 @@ public class Venda {
             valorFinal = subtotal;
         }else{
             if(subtotal >= 50 && subtotal < 100){
-                valorFinal = subtotal - (subtotal*0.5f);
+                valorFinal = subtotal - (subtotal*0.05f);
             }else{
                 if(subtotal >= 100 && subtotal < 150){
                     valorFinal = subtotal - (subtotal*0.10f);
@@ -81,6 +97,7 @@ public class Venda {
                 }
             }
         }
+        valorFinal = Math.round(valorFinal * 100.0f)/100.0f;
         return valorFinal;
     }
     public void setValorFinal(float valorFinal) {
@@ -107,6 +124,13 @@ public class Venda {
     public void setItens(List<ItemDeVenda> itens) {
         this.itens = itens;
     }
+    
+    public FormaPagamento getFormaPagamento() {
+        return formaPagamento;
+    }
+    public void setFormaPagamento(FormaPagamento formaPagamento) {
+        this.formaPagamento = formaPagamento;
+    }
 
     public String calculaDesconto(){
         String desconto = "0%";
@@ -130,5 +154,13 @@ public class Venda {
             }
         }
         return desconto;
+    }
+
+    public int qtdProdVendidos(){
+        int qtdProdVendidos = 0;
+        for(int i = 0; i < itens.size(); i++){
+            qtdProdVendidos += itens.get(i).getQtdVenda();
+        }
+        return qtdProdVendidos;
     }
 }

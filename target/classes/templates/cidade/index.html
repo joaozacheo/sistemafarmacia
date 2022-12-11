@@ -7,8 +7,13 @@
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
-            <a href="/cidades/novo" 
-                class="btn btn-success">Nova Cidade</a>
+            <div class="row">
+                <a href="/cidades/novo" class="btn btn-success mb-3 col-2">Nova Cidade</a>
+                <form class="d-flex mb-3 col-10" role="search" th:action="@{/cidades/}" method="GET">
+                    <input class="form-control me-2" name="busca" type="search" placeholder="Pesquise pelo nome" aria-label="Search">
+                    <button class="btn btn-outline-success" name="btn-pesquisar" type="submit">Pesquisar</button>
+                </form>
+            </div>
             <table class="table">
                 <thead>
                     <tr>

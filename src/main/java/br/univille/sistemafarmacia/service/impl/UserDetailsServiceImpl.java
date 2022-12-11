@@ -15,7 +15,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 
-
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
     @Autowired
@@ -25,7 +24,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     public UserDetails loadUserByUsername(String username) 
             throws UsernameNotFoundException {
         var umLogin = repository.findByNome(username);
-
         return new User(umLogin.getNome(), umLogin.getSenha(), new ArrayList<>());
     }
 }
