@@ -16,22 +16,7 @@
                     <input type="text" th:field="*{nome}"
                         class="form-control" id="txtnome">
                 </div>
-
-                <div class="mb-3">
-                    <label>Cidade:</label>
-                    <select class="form-select" th:field="*{cidadeResidencia}">
-                        <option th:each="umaCidade : ${listaCidades}"
-                        th:text="${umaCidade.nome}"
-                        th:value="${umaCidade.id}"></option>
-                    </select>
-                </div>
                 
-                <div class="mb-3">
-                    <label for="txtendereco">Endereço:</label>
-                    <input type="text" th:field="*{endereco}"
-                        class="form-control" id="txtendereco">
-                </div>
-
                 <div class="mb-3">
                     <label for="txtcpf">CPF:</label>
                     <input type="text" th:field="*{cpf}"
@@ -70,5 +55,6 @@
             </form>
         </main>
         <footer th:include="layout :: footer"></footer>
+        <script th:src="@{/scriptCliente.js}"></script>
     </body>
 </html>

@@ -17,5 +17,8 @@
         });
     });
 
+    $(document).ready(function(){
+        $('#txtcpf').mask('000.000.000-00');
+    });
 
 })();
