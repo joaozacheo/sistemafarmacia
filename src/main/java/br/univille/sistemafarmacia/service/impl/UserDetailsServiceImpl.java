@@ -21,17 +21,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     @Autowired
     private LoginRepository repository;
 
-    // @Override
-    // protected void configure(final HttpSecurity http) throws Exception {
-    //     http
-    //         .formLogin()
-    //         .loginPage("/login.html")
-    //         .failureUrl("/login-error.html")
-    //       .and()
-    //         .logout()
-    //         .logoutSuccessUrl("/index.html");
-    // }
-
     @Override
     public UserDetails loadUserByUsername(String username) 
             throws UsernameNotFoundException {
