@@ -2,8 +2,11 @@ package br.univille.sistemafarmacia.controller;
 
 import java.util.HashMap;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.univille.sistemafarmacia.entity.ItemDeVenda;
 import br.univille.sistemafarmacia.entity.Venda;
 import br.univille.sistemafarmacia.service.ClienteService;
+import br.univille.sistemafarmacia.service.FormaPagamentoService;
 import br.univille.sistemafarmacia.service.FuncionarioService;
 import br.univille.sistemafarmacia.service.ProdutoService;
 import br.univille.sistemafarmacia.service.VendaService;
@@ -29,70 +33,168 @@ public class VendaController {
     private FuncionarioService serviceFuncionario;
     @Autowired
     private ProdutoService serviceProdutos;
+    @Autowired
+    private FormaPagamentoService servicePagamento;
 
     @GetMapping
-    public ModelAndView index(){
-        var listaVendas = service.getAll();
+    public ModelAndView index(@RequestParam(required = false, name = "busca") String busca){
+        var listaVendas = service.getAll(busca);
         return new ModelAndView("venda/index", "listaVendas", listaVendas);
     }
 
     @GetMapping("/nova")
     public ModelAndView novo(){
+        var busca = "";
         var venda = new Venda();
-        var listaClientes = serviceCliente.getAll();
-        var listaFuncionarios = serviceFuncionario.getAll();
-        var listaProdutos = serviceProdutos.getAll();
-        //var desconto = venda.calculaDesconto();
+        var listaClientes = serviceCliente.getAll(busca);
+        var listaFuncionarios = serviceFuncionario.getAll(busca);
+        var listaProdutos = serviceProdutos.getAll(busca);
+        var listaPagamentos = servicePagamento.getAll();
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
         dados.put("listaCompradores", listaClientes);
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
+        dados.put("listaPagamentos", listaPagamentos);
         dados.put("novoItem", new ItemDeVenda());
-        //dados.put("desconto", desconto);
         return new ModelAndView("venda/form", dados);
     }
 
     @PostMapping(params = "save")
-    public ModelAndView save(Venda venda){
+    public ModelAndView save(@Valid Venda venda, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            var busca = "";
+            var listaClientes = serviceCliente.getAll(busca);
+            var listaFuncionarios = serviceFuncionario.getAll(busca);
+            var listaProdutos = serviceProdutos.getAll(busca);
+            var listaPagamentos = servicePagamento.getAll();
+
+            HashMap<String, Object> dados = new HashMap<>();
+            dados.put("listaCompradores", listaClientes);
+            dados.put("listaVendedores", listaFuncionarios);
+            dados.put("listaProdutos", listaProdutos);
+            dados.put("listaPagamentos", listaPagamentos);
+            dados.put("novoItem", new ItemDeVenda());
+            dados.put("venda", venda);
+            return new ModelAndView("venda/form", dados);
+        }
+        var busca = "";
         service.save(venda);
+        
+        for(int i = 1; i <= serviceProdutos.getAll(busca).size(); i++){
+            int qtdProduto = 0;
+            int qtdAtual = 0;
+            var umProduto = serviceProdutos.findById(i);
+            for(int j = 0; j < venda.getItens().size(); j++){
+                if(umProduto.getId() == venda.getItens().get(j).getProduto().getId()){
+                    qtdProduto = venda.getItens().get(j).getQtdVenda();
+                }
+            }
+            qtdAtual = umProduto.getQtdEstoque() - qtdProduto;
+            umProduto.setQtdEstoque(qtdAtual);
+            serviceProdutos.save(umProduto);
+        }
+
         return new ModelAndView("redirect:/vendas");
     }
 
     @PostMapping(params = "incitem")
-    public ModelAndView incluirItem(Venda venda, ItemDeVenda novoItem){
+    public ModelAndView incluirItem(Venda venda, ItemDeVenda novoItem, BindingResult bindingResult){
+        var alerta1 = 0;
+        var alerta2 = 0;
+        var alerta3 = 0;
+
+        if(novoItem.getProduto() == null){
+            alerta3 = 1;
+            var busca = "";
+            var listaClientes = serviceCliente.getAll(busca);
+            var listaFuncionarios = serviceFuncionario.getAll(busca);
+            var listaProdutos = serviceProdutos.getAll(busca);
+            var listaPagamentos = servicePagamento.getAll();
+
+            HashMap<String, Object> dados = new HashMap<>();
+            dados.put("listaCompradores", listaClientes);
+            dados.put("listaVendedores", listaFuncionarios);
+            dados.put("listaProdutos", listaProdutos);
+            dados.put("listaPagamentos", listaPagamentos);
+            dados.put("novoItem", new ItemDeVenda());
+            dados.put("venda", venda);
+            dados.put("alerta3", alerta3);
+            return new ModelAndView("venda/form", dados);
+        }
+
+        if(novoItem.getQtdVenda() > novoItem.getProduto().getQtdEstoque()){
+            alerta1 = 1;
+            var busca = "";
+            var listaClientes = serviceCliente.getAll(busca);
+            var listaFuncionarios = serviceFuncionario.getAll(busca);
+            var listaProdutos = serviceProdutos.getAll(busca);
+            var listaPagamentos = servicePagamento.getAll();
+
+            HashMap<String, Object> dados = new HashMap<>();
+            dados.put("listaCompradores", listaClientes);
+            dados.put("listaVendedores", listaFuncionarios);
+            dados.put("listaProdutos", listaProdutos);
+            dados.put("listaPagamentos", listaPagamentos);
+            dados.put("novoItem", new ItemDeVenda());
+            dados.put("venda", venda);
+            dados.put("alerta1", alerta1);
+            return new ModelAndView("venda/form", dados);
+        }
+
+        if(novoItem.getQtdVenda() < 1){
+            alerta2 = 1;
+            var busca = "";
+            var listaClientes = serviceCliente.getAll(busca);
+            var listaFuncionarios = serviceFuncionario.getAll(busca);
+            var listaProdutos = serviceProdutos.getAll(busca);
+            var listaPagamentos = servicePagamento.getAll();
+
+            HashMap<String, Object> dados = new HashMap<>();
+            dados.put("listaCompradores", listaClientes);
+            dados.put("listaVendedores", listaFuncionarios);
+            dados.put("listaProdutos", listaProdutos);
+            dados.put("listaPagamentos", listaPagamentos);
+            dados.put("novoItem", new ItemDeVenda());
+            dados.put("venda", venda);
+            dados.put("alerta2", alerta2);
+            return new ModelAndView("venda/form", dados);
+        }
+
         venda.getItens().add(novoItem);
-        var listaClientes = serviceCliente.getAll();
-        var listaFuncionarios = serviceFuncionario.getAll();
-        var listaProdutos = serviceProdutos.getAll();
-        //var desconto = venda.calculaDesconto();
+        var busca = "";
+        var listaClientes = serviceCliente.getAll(busca);
+        var listaFuncionarios = serviceFuncionario.getAll(busca);
+        var listaProdutos = serviceProdutos.getAll(busca);
+        var listaPagamentos = servicePagamento.getAll();
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
         dados.put("listaCompradores", listaClientes);
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
+        dados.put("listaPagamentos", listaPagamentos);
         dados.put("novoItem", new ItemDeVenda());
-        //dados.put("desconto", desconto);
         return new ModelAndView("venda/form", dados);
     }
 
     @PostMapping(params = "removeitem")
     public ModelAndView removerItem(@RequestParam("removeitem") int index, Venda venda){
         venda.getItens().remove(index);
-        var listaClientes = serviceCliente.getAll();
-        var listaFuncionarios = serviceFuncionario.getAll();
-        var listaProdutos = serviceProdutos.getAll();
-        //var desconto = venda.calculaDesconto();
+        var busca = "";
+        var listaClientes = serviceCliente.getAll(busca);
+        var listaFuncionarios = serviceFuncionario.getAll(busca);
+        var listaProdutos = serviceProdutos.getAll(busca);
+        var listaPagamentos = servicePagamento.getAll();
 
         HashMap<String, Object> dados = new HashMap<>();
         dados.put("venda", venda);
         dados.put("listaCompradores", listaClientes);
         dados.put("listaVendedores", listaFuncionarios);
         dados.put("listaProdutos", listaProdutos);
+        dados.put("listaPagamentos", listaPagamentos);
         dados.put("novoItem", new ItemDeVenda());
-        //dados.put("desconto", desconto);
         return new ModelAndView("venda/form", dados);
     }
 }

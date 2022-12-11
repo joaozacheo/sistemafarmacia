@@ -9,7 +9,16 @@
 
         <main class="container">
             
-            <a href="/clientes/novo" class="btn btn-success">Novo Cliente</a>
+            <div class="row">
+                <a href="/clientes/novo" class="btn btn-success mb-3 col-2">Novo Cliente</a>
+                <form class="d-flex mb-3 col-10" role="search" th:action="@{/clientes/}" method="GET">
+                    <input class="form-control me-2" name="busca" type="search" placeholder="Pesquise pelo nome ou endereço ou CPF" aria-label="Search">
+                    <button class="btn btn-outline-success" name="btn-pesquisar" type="submit">Pesquisar</button>
+                </form>
+            </div>
+
+            <div id="alerta-del" class="alert alert-danger d-none" th:name="${alertaDel}">Não é possível deletar um cliente cadastrado em uma venda</div>
+
             <table class="table" id="tabclientes">
                 <thead>
                     <tr>
@@ -57,7 +66,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" id="btnnao" data-bs-dismiss="modal">Não</button>
-                    <button type="button" class="btn btn-primary" id="btnsim">Sim</button>
+                    <button type="button" class="btn btn-success" id="btnsim">Sim</button>
                 </div>
                 </div>
             </div>

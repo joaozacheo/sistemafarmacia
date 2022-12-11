@@ -1,11 +1,15 @@
 package br.univille.sistemafarmacia.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.univille.sistemafarmacia.entity.Cidade;
@@ -19,9 +23,9 @@ public class CidadeController {
     private CidadeService service;
 
     @GetMapping
-    public ModelAndView index(){
-        var listaCidades = service.getAll();
-        return new ModelAndView("cidade/index","listaCidades",listaCidades);
+    public ModelAndView index(@RequestParam(required = false, name = "busca") String busca){
+        var listaCidades = service.getAll(busca);
+        return new ModelAndView("cidade/index","listaCidades", listaCidades);
     }
 
     @GetMapping("/novo")
@@ -30,8 +34,10 @@ public class CidadeController {
         return new ModelAndView("cidade/form","cidade",novaCidade);
     }
     @PostMapping(params = "form")
-    public ModelAndView save(Cidade cidade){
-
+    public ModelAndView save(@Valid Cidade cidade, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return new ModelAndView("cidade/form");
+        }
         service.save(cidade);
         
         return new ModelAndView("redirect:/cidades");

@@ -19,7 +19,7 @@
                     <p th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}" class="alert alert-danger"></p>
                 </div>
                 <div class="mb-3">
-                    <label for="txt-qtdEstoque" class="form-label">Quantidade:</label>
+                    <label for="txt-qtdEstoque" class="form-label">Quantidade em Estoque:</label>
                     <input type="text" th:field="*{qtdEstoque}" class="form-control" id="txt-qtdEstoque">
                     <p th:if="${#fields.hasErrors('qtdEstoque')}" th:errors="*{qtdEstoque}" class="alert alert-danger"></p>
                 </div>
@@ -31,6 +31,7 @@
                 <div class="mb-3">
                     <label for="txt-fornecedor">Fornecedor:</label>
                     <select name="fornecedor" id="txt-fornecedor" class="form-select" th:field="*{fornecedor}">
+                        <option value=""></option>
                         <option th:each="fornecedor : ${listaFornecedores}" th:text="${fornecedor.nome}" th:value="${fornecedor.id}"></option>
                     </select>
                 </div>

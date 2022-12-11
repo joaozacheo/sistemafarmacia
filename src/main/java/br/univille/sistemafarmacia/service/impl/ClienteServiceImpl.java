@@ -16,9 +16,13 @@ public class ClienteServiceImpl implements ClienteService{
     private ClienteRepository repository;
 
     @Override
-    public List<Cliente> getAll() {
+    public List<Cliente> getAll(String busca) {
         
-        return repository.findAll();
+        if(busca == null || busca == ""){
+            return repository.findAll();
+        }else{
+            return repository.findByNomeIgnoreCaseContainingOrEnderecoIgnoreCaseContainingOrCpfIgnoreCaseContaining(busca, busca, busca);
+        }
     }
 
     @Override
@@ -41,9 +45,9 @@ public class ClienteServiceImpl implements ClienteService{
         repository.deleteById(id);        
     }
 
-    @Override
+    /*@Override
     public List<Cliente> findByNome(String nome) {
         return repository.findByNomeIgnoreCaseContaining(nome);
-    }
+    }*/
     
 }

@@ -6,11 +6,17 @@
     <body>
         <nav th:replace="layout :: menu"></nav>
         <main class="container">
-            <a href="/vendas/nova" class="btn btn-success">Nova Venda</a>
+            <div class="row">
+                <a href="/vendas/nova" class="btn btn-success mb-3 col-2">Nova Venda</a>
+                <form class="d-flex mb-3 col-10" role="search" th:action="@{/vendas/}" method="GET">
+                    <input class="form-control me-2" name="busca" type="search" placeholder="Pesquise pelo comprador ou vendedor" aria-label="Search">
+                    <button class="btn btn-outline-success" name="btn-pesquisar" type="submit">Pesquisar</button>
+                </form>
+            </div>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Produtos</th>
+                        <th>Itens</th>
                         <th>Comprador</th>
                         <th>Vendedor</th>
                         <th>Data</th>
@@ -20,12 +26,11 @@
                 </thead>
                 <tbody>
                     <tr th:each="venda : ${listaVendas}">
-                        <td th:text="${#lists.size(venda.getItens)}"></td>
+                        <td th:text="${venda.qtdProdVendidos()}"></td>
                         <td th:text="${venda.comprador?.nome}"></td>
                         <td th:text="${venda.vendedor?.nome}"></td>
                         <td th:text="${#dates.format(venda.data, 'dd/MM/yyyy')}"></td>
-                        <td></td>
-                        <!--<td th:text="${venda.formaPagamento}"></td>-->
+                        <td th:text="${venda.formaPagamento?.tipo}"></td>
                         <td class="d-none" th:text="${venda.subtotal}"></td>
                         <td th:text="${venda.valorFinal}"></td>
                     </tr>

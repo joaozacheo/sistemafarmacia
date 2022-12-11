@@ -15,8 +15,13 @@ public class CidadeServiceImpl implements CidadeService{
     public CidadeRepository repository;
 
     @Override
-    public List<Cidade> getAll(){
-        return repository.findAll();
+    public List<Cidade> getAll(String busca){
+
+        if(busca == null || busca == ""){
+            return repository.findAll();
+        }else{
+            return repository.findByNomeIgnoreCaseContaining(busca);
+        }
     }
 
     @Override

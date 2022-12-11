@@ -16,8 +16,13 @@ public class FornecedorServiceImpl implements FornecedorService{
     private FornecedorRepository repositorio;
 
     @Override
-    public List<Fornecedor> getAll() {
-        return repositorio.findAll();
+    public List<Fornecedor> getAll(String busca) {
+
+        if(busca == null || busca == ""){
+            return repositorio.findAll();
+        }else{
+            return repositorio.findByNomeIgnoreCaseContainingOrEnderecoIgnoreCaseContainingOrContatoIgnoreCaseContaining(busca, busca, busca);
+        }
     }
 
     @Override

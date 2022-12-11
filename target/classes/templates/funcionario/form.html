@@ -11,28 +11,34 @@
                 <div class="mb-3">
                     <label for="txt-nome" class="form-label">Nome:</label>
                     <input type="text" th:field="*{nome}" class="form-control" id="txt-nome">
+                    <p th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="alert alert-danger"></p>
                 </div>
                 <div class="mb-3">
                     <label for="txt-cpf" class="form-label">CPF:</label>
                     <input type="text" th:field="*{cpf}" class="form-control" id="txt-cpf">
+                    <p th:if="${#fields.hasErrors('cpf')}" th:errors="*{cpf}" class="alert alert-danger"></p>
                 </div>
                 <div class="mb-3">
                     <label for="txt-sexo" class="form-label">Sexo:</label>
                     <input type="text" th:field="*{sexo}" class="form-control" id="txt-sexo">
+                    <p th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}" class="alert alert-danger"></p>
                 </div>
                 <div class="mb-3">
                     <label for="txt-endereco" class="form-label">Endereco:</label>
                     <input type="text" th:field="*{endereco}" class="form-control" id="txt-endereco">
+                    <p th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}" class="alert alert-danger"></p>
                 </div>
                 <div class="mb-3">
                     <label for="txt-cidadeResidencia">Cidade:</label>
                     <select id="txt-cidadeResidencia" class="form-select" th:field="*{cidadeResidencia}">
+                        <option value=""></option>
                         <option th:each="umaCidade : ${listaCidades}" th:text="${umaCidade.nome}" th:value="${umaCidade.id}"></option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="txt-contato" class="form-label">Contato:</label>
                     <input type="email" th:field="*{contato}" class="form-control" id="txt-contato">
+                    <p th:if="${#fields.hasErrors('contato')}" th:errors="*{contato}" class="alert alert-danger"></p>
                 </div>
                 <button type="submit" class="btn btn-success">Salvar</button>
             </form>

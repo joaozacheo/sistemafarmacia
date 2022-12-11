@@ -5,6 +5,6 @@ import java.util.List;
 import br.univille.sistemafarmacia.entity.Venda;
 
 public interface VendaService {
-    List<Venda> getAll();
+    List<Venda> getAll(String busca);
     Venda save(Venda venda);
 }
