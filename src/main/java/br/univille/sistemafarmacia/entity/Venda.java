@@ -82,7 +82,7 @@ public class Venda {
             valorFinal = subtotal;
         }else{
             if(subtotal >= 50 && subtotal < 100){
-                valorFinal = subtotal - (subtotal*0.5f);
+                valorFinal = subtotal - (subtotal*0.05f);
             }else{
                 if(subtotal >= 100 && subtotal < 150){
                     valorFinal = subtotal - (subtotal*0.10f);

@@ -23,4 +23,9 @@
     if(valorDel == 1){
         alertaDel.classList.remove('d-none');
     }
+    
+    $(document).ready(function(){
+        $('#txt-cpf').mask('000.000.000-00');
+    });
+
 })();
