@@ -63,6 +63,7 @@ public class VendaController {
 
     @PostMapping(params = "save")
     public ModelAndView save(@Valid Venda venda, BindingResult bindingResult){
+        var alertaItens = 0;
         if(bindingResult.hasErrors()){
             var busca = "";
             var listaClientes = serviceCliente.getAll(busca);
@@ -77,8 +78,29 @@ public class VendaController {
             dados.put("listaPagamentos", listaPagamentos);
             dados.put("novoItem", new ItemDeVenda());
             dados.put("venda", venda);
+            dados.put("alertaItens", alertaItens);
             return new ModelAndView("venda/form", dados);
         }
+
+        if(venda.getItens().size() == 0){
+            alertaItens = 1;
+            var busca = "";
+            var listaClientes = serviceCliente.getAll(busca);
+            var listaFuncionarios = serviceFuncionario.getAll(busca);
+            var listaProdutos = serviceProdutos.getAll(busca);
+            var listaPagamentos = servicePagamento.getAll();
+
+            HashMap<String, Object> dados = new HashMap<>();
+            dados.put("listaCompradores", listaClientes);
+            dados.put("listaVendedores", listaFuncionarios);
+            dados.put("listaProdutos", listaProdutos);
+            dados.put("listaPagamentos", listaPagamentos);
+            dados.put("novoItem", new ItemDeVenda());
+            dados.put("venda", venda);
+            dados.put("alertaItens", alertaItens);
+            return new ModelAndView("venda/form", dados);
+        }
+
         var busca = "";
         service.save(venda);
         
