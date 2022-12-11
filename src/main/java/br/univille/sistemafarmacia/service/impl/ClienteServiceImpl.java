@@ -44,10 +44,5 @@ public class ClienteServiceImpl implements ClienteService{
     public void delete(long id) {
         repository.deleteById(id);        
     }
-
-    /*@Override
-    public List<Cliente> findByNome(String nome) {
-        return repository.findByNomeIgnoreCaseContaining(nome);
-    }*/
     
 }
