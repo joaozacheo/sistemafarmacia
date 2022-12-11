@@ -19,7 +19,7 @@ public class Produto {
     @NotBlank(message = "Campo não pode ser em branco")
     private String nome;
     private String descricao;
-    @Min(value = 1, message = "Quantidade mínima é 1")
+    @Min(value = 0, message = "Quantidade mínima é 0")
     private int qtdEstoque;
     @Digits(integer = 4, fraction = 2, message = "Digite valor real")
     @Min(value = 1, message = "Valor mínimo é 1")
