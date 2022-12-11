@@ -29,7 +29,6 @@ public class Venda {
     @NotNull(message = "Selecione a data da venda")
     private Date data;
 
-    //@DecimalMin(value = "0", inclusive = false, message = "O valor mínimo é R$0.01")
     private float subtotal;
 
     private float valorFinal;
