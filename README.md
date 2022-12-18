@@ -7,11 +7,11 @@
 </p>
 
 <p align="center">
-  <a href="#💻-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#⚙️-funcionamento">Funcionamento</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#🔗-acesso-ao-projeto">Acesso</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#🚀-tecnologias-usadas">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#✒️-autores">Autores</a>
+  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#%EF%B8%8F-funcionamento">Funcionamento</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-acesso-ao-projeto">Acesso</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias-usadas">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#%EF%B8%8F-autores">Autores</a>
 </p>
 
 </br>
@@ -38,7 +38,7 @@ Tomamos como exemplo para demonstrar o sistema a rede JG Farmácias.
 
 ### 🛡️ Segurança
 
-A aplicação conta com um [sistema de segurança](#💻-tecnologias-usadas) e apresenta uma tela de login para autorizar o acesso do usuário.
+A aplicação conta com um [sistema de segurança](#-tecnologias-usadas) e apresenta uma tela de login para autorizar o acesso do usuário.
 
 ![tela de login](https://imgur.com/u5o4MNU.png)
 
@@ -47,10 +47,10 @@ A principal funcionalidade do sistema é o controle de vendas, por isso, após o
 ![tela principal](https://imgur.com/wO7Gg67.png)
 
 Porém existem outras abas que servem para cadastros gerais. Aqui usaremos o exemplo da tela de clientes, mas o mesmo serve para as outras. As telas de cadastro contam com 4 funcionalidades principais:
-- [`Funcionalidade 1:`](#funcionalidade-1-botão-para-adição-de-novos-dados) Botão para adição de novos dados
-- [`Funcionalidade 2:`](#funcionalidade-2-barra-de-pesquisa) Barra de pesquisa
-- [`Funcionalidade 3:`](#funcionalidade-3-botão-para-alteração-de-dados) Botão para alteração de dados
-- [`Funcionalidade 4:`](#funcionalidade-4-botão-para-exclusão-de-dados) Botão para exclusão de dados
+- [`Funcionalidade 1:`](#-funcionalidade-1-botão-para-adição-de-novos-dados) Botão para adição de novos dados
+- [`Funcionalidade 2:`](#-funcionalidade-2-barra-de-pesquisa) Barra de pesquisa
+- [`Funcionalidade 3:`](#-funcionalidade-3-botão-para-alteração-de-dados) Botão para alteração de dados
+- [`Funcionalidade 4:`](#-funcionalidade-4-botão-para-exclusão-de-dados) Botão para exclusão de dados
 
 ![exemplo de página de cadastro](https://imgur.com/ZZTikRG.png)
 
@@ -60,7 +60,7 @@ Ao clicar no botão de "Novo Cliente" o sistema direciona o usuário para um for
 
 ![exemplo de formulário de cadastro](https://imgur.com/Zmbib5A.png)
 
-Com todas as informações preenchidas, o usuário deverá clicar em "Salvar" para que o sistema salve as informações no [banco de dados](#💻-tecnologias-usadas).
+Com todas as informações preenchidas, o usuário deverá clicar em "Salvar" para que o sistema salve as informações no [banco de dados](#-tecnologias-usadas).
 
 ![novo dado salvo](https://imgur.com/cC7hy6e.png)
 
@@ -107,13 +107,14 @@ Você pode acessar o projeto [aqui](https://github.com/joaozacheo/sistemafarmaci
 
 Para a construção da aplicação foram utilizadas as tecnologias:
 
-|   |   |   |   |   |
-|---|---|---|---|---|
-| ![java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)  | Java | | ![jquery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white)  | JQuery |
-| ![html](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)  | HTML | | ![sprint boot](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)  | Spring Boot |
-| ![css](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)  | CSS | | ![spring security](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)  | Spring Security |
-| ![bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)  | Bootstrap | | ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-%23005C0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white) | Thymeleaf |
-| ![javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)  | JavaScript | | ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white) | MariaDB |
+|   |   |   |   |
+|---|---|---|---|
+| ![java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)  | Java | ![jquery](https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white)  | JQuery |
+| ![html](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)  | HTML | ![sprint boot](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)  | Spring Boot |
+| ![css](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)  | CSS | ![spring security](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)  | Spring Security |
+| ![bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)  | Bootstrap | ![Thymeleaf](https://img.shields.io/badge/Thymeleaf-%23005C0F.svg?style=for-the-badge&logo=Thymeleaf&logoColor=white) | Thymeleaf |
+| ![javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)  | JavaScript | ![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white) | MariaDB |
+|   |   |   |   |
 
 </br>
 
