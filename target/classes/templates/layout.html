@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Farmácia JG</title>
+        <title>JG Farmácias</title>
         <link rel="icon" type="imagem/png" href="/img/img03.png"/>
         <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}">
         <link rel="stylesheet" th:href="@{//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.14/css/bootstrap-select.min.css}"/>
@@ -44,9 +44,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/formaPagamento">Forma de Pagamento</a>
                     </li>
+                    <li class="nav-item" id="logout-icon1">
+                        <a class="navbar-brand" href="/login?logout=true">
+                            <img src="/img/img02.png" alt="logotipo" width="30" height="24" class="d-inline-block align-text-right">
+                        </a>
+                    </li>
                 </ul>
                 </div>
-                <a class="navbar-brand" href="/logout">
+                <a class="navbar-brand" href="/login?logout=true" id="logout-icon2">
                     <img src="/img/img02.png" alt="logotipo" width="30" height="24" class="d-inline-block align-text-right">
                 </a>
             </div>
