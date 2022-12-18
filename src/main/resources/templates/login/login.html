@@ -18,12 +18,10 @@
             <div th:if="${param.error}" class="alert alert-danger">Usuário e senha inválidos</div>
             <div th:if="${param.logout}" class="alert alert-success">Logout concluído</div>
             <div class="mb-3 setor-form">
-                <label for="username" class="form-label">Usuário:</label>
-                <input type="text" id="username" name="username" class="form-control">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Usuário">
             </div>
             <div class="mb-3 setor-form">
-                <label for="password" class="form-label">Senha:</label>
-                <input type="password" id="password" name="password" class="form-control">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Senha">
             </div>
             <button type="submit" id="btn-login" class="btn btn-success">Enviar</button>
         </form>
