@@ -18,7 +18,7 @@
 
 ## 💻 Projeto
 
-Projeto desenvolvido com base no curso Novos Talentos em TI da Univille. A aplicação corresponde a um sistema de cadastro voltado aos funcionários de uma farmácia.
+Projeto desenvolvido com base no curso *_Novos Talentos em TI_* da [Univille](https://www.univille.edu.br/). A aplicação corresponde a um sistema de cadastro voltado aos funcionários de uma farmácia.
 
 O sistema conta com as funcionalidades:
 - Sistema de segurança (tela de login)
@@ -100,6 +100,8 @@ Ao finalizar o uso, o usuário poderá fazer o logout do sistema clicando no íc
 ## 🔗 Acesso ao projeto
 
 Você pode acessar o projeto [aqui](https://github.com/joaozacheo/sistemafarmacia) ou [baixá-lo](https://github.com/joaozacheo/sistemafarmacia/archive/refs/heads/main.zip).
+
+Se a aplicação estiver no ar, você pode testá-la [aqui](https://sistemafarmacia-1671417070640.azurewebsites.net).
 
 </br>
 
