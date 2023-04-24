@@ -80,7 +80,7 @@ O usuário também tem a possibilidade de alterar dados, caso necessário, apena
 
 Se houver a necessidade de excluir um dado, o usuário tem a opção de clicar no botão "Excluir". Um alerta de corfimação aparecerá na tela com as opções de confirmar e cancelar o procedimento.
 
-> ⚠️ Atenção: Caso o dado a ser excluído esteja vinculado em outros cadastros, como uma venda, o sistema alertará que é não é possível executar a exclusão.
+> ⚠️ Atenção: Caso o dado a ser excluído esteja vinculado em outros cadastros, como uma venda, o sistema alertará que não é possível executar a exclusão.
 
 ![alerta de exclusão](https://imgur.com/nJ27DHX.png)
 
